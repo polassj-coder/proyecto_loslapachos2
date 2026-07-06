@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuesta de Retiro de Integración - TechMinds Solutions & Los Lapachos</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    /* VARIABLES CSS DEFINIDAS POR LA SKILL BRAND-IDENTITY */
+    :root {
+      --color-primary: #2D3D26; /* Verde Musgo */
+      --color-primary-light: #4A633F;
+      --color-dark: #121E15; /* Verde Bosque Profundo */
+      --color-background: #FFFFFF;
+      --color-soft-bg: #F8F9FA; /* Blanco Roto */
+      --color-soft-bg: #F8F9FA; /* Blanco Roto */
+      --color-text-dark: #1C271E;
+      --color-text-light: #FFFFFF;
+      --color-accent: #E0A96D; /* Dorado sutil para detalles premium */
+      --font-headings: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      --shadow-md: 0 10px 15px -3px rgba(18, 30, 21, 0.08), 0 4px 6px -2px rgba(18, 30, 21, 0.03);
+      --shadow-lg: 0 20px 25px -5px rgba(18, 30, 21, 0.12), 0 10px 10px -5px rgba(18, 30, 21, 0.04);
+      --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ESTILOS GLOBALES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text-dark);
+      background-color: var(--color-background);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-headings);
+      color: var(--color-dark);
+      font-weight: 700;
+    }
+
+    /* ANIMACIONES DE ENTRADA (SKILL: WEB-PROPOSAL-TEMPLATE) */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    /* MICRO-ANIMACIONES HOVER (SKILL: WEB-PROPOSAL-TEMPLATE) */
+    .hover-lift {
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-6px) scale(1.015);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* BOTÓN GLOW (SKILL: WEB-PROPOSAL-TEMPLATE) */
+    .btn-glow {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .btn-glow::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.5s ease;
+    }
+
+    .btn-glow:hover::after {
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+
+    /* GLASSMORPHISM (SKILL: WEB-PROPOSAL-TEMPLATE) */
+    .glass-container {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .glass-container-light {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px 0 rgba(18, 30, 21, 0.04);
+    }
+
+    /* HEADER */
+    header {
+      background-color: var(--color-background);
+      padding: 1.2rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--color-dark);
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--color-primary);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn-contact {
+      background-color: var(--color-primary);
+      color: var(--color-text-light);
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: var(--transition-smooth);
+      border: 1px solid var(--color-primary);
+      cursor: pointer;
+    }
+
+    .btn-contact:hover {
+      background-color: var(--color-dark);
+      border-color: var(--color-dark);
+      transform: translateY(-2px);
+    }
+
+    /* HERO SECTION (SECCIÓN 1) */
+    .hero {
+      position: relative;
+      background-color: var(--color-dark);
+      color: var(--color-text-light);
+      padding: 10rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(18, 30, 21, 0.75), rgba(18, 30, 21, 0.85)), url('lodge.jpg') no-repeat center center/cover;
+      z-index: 1;
+      animation: zoomSlow 20s infinite alternate;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--color-accent);
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+
+    .hero-title {
+      font-size: 3.8rem;
+      color: var(--color-text-light);
+      margin-bottom: 2rem;
+      line-height: 1.25;
+    }
+
+    .hero-description {
+      font-size: 1.25rem;
+      font-weight: 300;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      opacity: 0.9;
+    }
+
+    .btn-cta {
+      display: inline-block;
+      background-color: var(--color-accent);
+      color: var(--color-dark);
+      padding: 1.1rem 2.8rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      box-shadow: 0 4px 14px rgba(224, 169, 109, 0.4);
+      transition: var(--transition-smooth);
+    }
+
+    .btn-cta:hover {
+      background-color: var(--color-text-light);
+      transform: translateY(-3px);
+    }
+
+    /* SECCIÓN GENERAL */
+    section {
+      padding: 7rem 2rem;
+    }
+
+    .section-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--color-primary);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 1rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 3px;
+      background-color: var(--color-accent);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    /* EL PROBLEMA (SECCIÓN 2 - ADAPTADO POR BRIEF-EXPRESS) */
+    .problem {
+      background-color: var(--color-soft-bg);
+    }
+
+    .problem-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .problem-card {
+      background: var(--color-background);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      border-left: 4px solid #D9534F; /* Rojo sutil para dolor */
+      box-shadow: var(--shadow-sm);
+    }
+
+    .problem-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--color-dark);
+    }
+
+    .problem-card p {
+      font-size: 0.95rem;
+      color: var(--color-text-dark);
+      opacity: 0.85;
+    }
+
+    /* LA SOLUCIÓN (SECCIÓN 3 - ADAPTADO POR BRIEF-EXPRESS) */
+    .solution {
+      background-color: var(--color-background);
+    }
+
+    .solution-intro {
+      font-size: 1.25rem;
+      max-width: 800px;
+      margin: 0 auto 4rem;
+      line-height: 1.8;
+      font-style: italic;
+      color: var(--color-text-dark);
+    }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .solution-item {
+      background: var(--color-soft-bg);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(45, 61, 38, 0.05);
+    }
+
+    .solution-item h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--color-primary);
+    }
+
+    /* METODOLOGÍA / ROADMAP (SECCIÓN 4 - TIMELINE) */
+    .methodology {
+      background-color: var(--color-soft-bg);
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 4rem auto 0;
+      padding: 2rem 0;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background-color: var(--color-primary);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+    }
+
+    @media (max-width: 768px) {
+      .timeline::after {
+        left: 31px;
+      }
+    }
+
+    .timeline-container {
+      padding: 10px 40px;
+      position: relative;
+      background-color: inherit;
+      width: 50%;
+    }
+
+    @media (max-width: 768px) {
+      .timeline-container {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+      .timeline-container::after {
+        left: 15px;
+      }
+    }
+
+    .timeline-container::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      right: -10px;
+      background-color: var(--color-accent);
+      border: 4px solid var(--color-primary);
+      top: 15px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+      .timeline-container::after {
+        left: 21px;
+        right: auto;
+      }
+    }
+
+    .left {
+      left: 0;
+    }
+
+    .right {
+      left: 50%;
+    }
+
+    @media (max-width: 768px) {
+      .right {
+        left: 0%;
+      }
+    }
+
+    .right::after {
+      left: -10px;
+    }
+
+    @media (max-width: 768px) {
+      .right::after {
+        left: 21px;
+      }
+    }
+
+    .timeline-content {
+      padding: 2rem;
+      background-color: var(--color-background);
+      position: relative;
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .timeline-content h3 {
+      font-size: 1.25rem;
+      color: var(--color-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    /* POR QUÉ NOSOTROS (SECCIÓN 5) */
+    .why-us {
+      background-color: var(--color-background);
+    }
+
+    .why-us-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .why-us-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    .why-us-image {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .why-us-bullets {
+      list-style: none;
+    }
+
+    .why-us-bullets li {
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .why-us-bullets li::before {
+      content: '✦';
+      color: var(--color-accent);
+      font-size: 1.2rem;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    /* INVERSIÓN / CALCULADORA (SECCIÓN 6 - SKILL: PRODUCT-CATALOG) */
+    .investment {
+      background-color: var(--color-soft-bg);
+    }
+
+    .calc-box {
+      max-width: 950px;
+      margin: 0 auto;
+      background-color: var(--color-background);
+      border-radius: 24px;
+      padding: 3.5rem;
+      box-shadow: var(--shadow-md);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      border: 1px solid rgba(45, 61, 38, 0.05);
+    }
+
+    @media (max-width: 768px) {
+      .calc-box {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+        gap: 2rem;
+      }
+    }
+
+    .calc-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .input-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .input-label {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--color-dark);
+    }
+
+    .input-value {
+      font-weight: 700;
+      color: var(--color-primary);
+      font-size: 1.1rem;
+    }
+
+    .slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 5px;
+      background: rgba(18, 30, 21, 0.1);
+      outline: none;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      background: var(--color-dark);
+    }
+
+    .services-select {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .service-option-card {
+      background: var(--color-soft-bg);
+      border: 1px solid rgba(18, 30, 21, 0.1);
+      border-radius: 12px;
+      padding: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .service-option-card:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    .service-option-card.selected {
+      border-color: var(--color-primary);
+      background-color: rgba(45, 61, 38, 0.05);
+    }
+
+    .option-details {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .option-checkbox {
+      accent-color: var(--color-primary);
+      width: 18px;
+      height: 18px;
+    }
+
+    .option-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--color-dark);
+    }
+
+    .option-price {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    /* CALENDARIO DE DISPONIBILIDAD */
+    .calendar-widget {
+      background: var(--color-background);
+      border: 1px solid rgba(18, 30, 21, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 0.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .calendar-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      color: var(--color-dark);
+      font-size: 1.1rem;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      text-align: center;
+    }
+    .calendar-day-header {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(18, 30, 21, 0.08);
+    }
+    .calendar-cell {
+      padding: 10px 0;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      font-weight: 500;
+      color: var(--color-text-dark);
+    }
+    .calendar-cell:hover:not(.booked):not(.selected) {
+      background-color: rgba(45, 61, 38, 0.1);
+    }
+    .calendar-cell.selected {
+      background-color: var(--color-primary) !important;
+      color: var(--color-text-light) !important;
+      font-weight: 700;
+    }
+    .calendar-cell.booked {
+      color: rgba(18, 30, 21, 0.3) !important;
+      background-color: rgba(18, 30, 21, 0.05);
+      text-decoration: line-through;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .calendar-cell.empty {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .calc-results {
+      background-color: var(--color-dark);
+      color: var(--color-text-light);
+      border-radius: 18px;
+      padding: 3rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .results-title {
+      font-size: 1.4rem;
+      color: var(--color-text-light);
+      margin-bottom: 1.5rem;
+      font-family: var(--font-headings);
+      text-align: center;
+    }
+
+    .results-price {
+      font-family: var(--font-headings);
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      margin: 1rem 0 2rem;
+      text-align: center;
+    }
+
+    .results-details {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      margin-bottom: 2.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* LLAMADA A LA ACCIÓN / CTA (SECCIÓN 7) */
+    .cta-section {
+      background-color: var(--color-dark);
+      color: var(--color-text-light);
+      text-align: center;
+      padding: 8rem 2rem;
+    }
+
+    .cta-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .cta-title {
+      color: var(--color-text-light);
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-description {
+      font-size: 1.15rem;
+      opacity: 0.85;
+      margin-bottom: 3rem;
+    }
+
+    .btn-submit-proposal {
+      background-color: var(--color-accent);
+      color: var(--color-dark);
+      border: none;
+      padding: 1.1rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      width: 100%;
+    }
+
+    .btn-submit-proposal:hover {
+      background-color: var(--color-text-light);
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--color-dark);
+      color: rgba(255, 255, 255, 0.6);
+      padding: 4rem 2rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-logo {
+      margin-bottom: 2rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-accent);
+    }
+
+    /* MODAL */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(18, 30, 21, 0.8);
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-smooth);
+    }
+
+    .modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      background: var(--color-background);
+      border-radius: 24px;
+      padding: 3.5rem 2.5rem;
+      max-width: 850px;
+      width: 95%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      transform: scale(0.9);
+      transition: var(--transition-smooth);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2.5rem;
+      text-align: left;
+      margin: 2rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .modal-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    .modal-section-title {
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 1.2rem;
+      border-bottom: 2px solid rgba(45, 61, 38, 0.1);
+      padding-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .modal-summary-box {
+      background: var(--color-soft-bg);
+      border-radius: 12px;
+      padding: 1.8rem;
+      border: 1px solid rgba(18, 30, 21, 0.05);
+    }
+
+    .modal-item-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+      color: var(--color-text-dark);
+    }
+
+    .modal-total-row {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--color-dark);
+      border-top: 2px solid var(--color-primary);
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+
+    .modal-day-card {
+      background: var(--color-soft-bg);
+      border-radius: 10px;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid var(--color-accent);
+    }
+
+    .modal-day-card h5 {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--color-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .modal-day-card p {
+      font-size: 0.85rem;
+      color: var(--color-text-dark);
+      opacity: 0.85;
+      line-height: 1.5;
+    }
+
+    .modal.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-icon {
+      font-size: 4rem;
+      color: var(--color-primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-text {
+      font-size: 1rem;
+      color: var(--color-text-dark);
+      opacity: 0.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-close-modal {
+      background-color: var(--color-primary);
+      color: var(--color-text-light);
+      border: none;
+      padding: 0.8rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    /* RANGOS DE FECHAS EN CALENDARIO */
+    .calendar-cell.selected-start {
+      background-color: var(--color-primary) !important;
+      color: var(--color-text-light) !important;
+      font-weight: 700;
+      border-top-left-radius: 8px !important;
+      border-bottom-left-radius: 8px !important;
+      border-top-right-radius: 0px !important;
+      border-bottom-right-radius: 0px !important;
+    }
+    .calendar-cell.selected-end {
+      background-color: var(--color-primary) !important;
+      color: var(--color-text-light) !important;
+      font-weight: 700;
+      border-top-right-radius: 8px !important;
+      border-bottom-right-radius: 8px !important;
+      border-top-left-radius: 0px !important;
+      border-bottom-left-radius: 0px !important;
+    }
+    .calendar-cell.selected-range {
+      background-color: rgba(45, 61, 38, 0.2) !important;
+      color: var(--color-primary) !important;
+      border-radius: 0px !important;
+      font-weight: 700;
+    }
+    .calendar-cell.range-preview {
+      background-color: rgba(45, 61, 38, 0.1) !important;
+      border-radius: 0px !important;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-container">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 65" width="165" height="54">
+        <rect width="200" height="65" rx="8" fill="#2D3D26" />
+        <path d="M 35 48 C 32 48, 31 32, 30 27 C 18 27, 14 18, 22 12 C 27 5, 43 5, 48 12 C 56 18, 52 27, 40 27 C 39 32, 38 48, 35 48 Z" fill="#121E15" />
+        <text x="125" y="32" font-family="'Inter', sans-serif" font-weight="700" font-size="14" fill="#FFFFFF" text-anchor="middle">Los LAPACHOS</text>
+        <text x="125" y="47" font-family="'Inter', sans-serif" font-weight="500" font-size="5.5" fill="#E0A96D" text-anchor="middle" letter-spacing="1">CENTRO RECREATIVO</text>
+      </svg>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#problema">El Reto</a></li>
+      <li><a href="#solucion">Nuestra Solución</a></li>
+      <li><a href="#inversion">Inversión</a></li>
+      <li><button class="btn-contact" onclick="openModal()">Reservar Propuesta</button></li>
+    </ul>
+  </header>
+
+  <!-- SECCIÓN 1: HERO (CON ESQUELETO DE VENTAS) -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content animate-fade-in">
+      <p class="hero-subtitle">Los Lapachos & TechMinds Solutions</p>
+      <h1 class="hero-title">Retiro de Desconexión, Cohesión y Estrategia</h1>
+      <p class="hero-description">Una propuesta diseñada a medida para el equipo técnico de TechMinds Solutions. Tres días de desconexión en la selva misionera para recargar energías, resolver el burnout y consolidar la cultura de equipo.</p>
+      <a href="#inversion" class="btn-cta btn-glow">Ver Plan de Inversión</a>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 2: EL PROBLEMA (ADAPTADO POR BRIEF-EXPRESS DE TECHMINDS) -->
+  <section id="problema" class="problem text-center">
+    <div class="section-container">
+      <span class="section-tag">El Desafío Actual</span>
+      <h2 class="section-title">Entendiendo su Contexto</h2>
+      <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto 3rem; opacity: 0.85;">
+        El trabajo 100% remoto y los exigentes ciclos de desarrollo de software en TechMinds Solutions han generado retos clave en el equipo técnico que este retiro busca solucionar:
+      </p>
+      <div class="problem-cards">
+        <div class="problem-card hover-lift">
+          <h3>1. Desgaste y Burnout Técnico</h3>
+          <p>Las entregas continuas y el aislamiento del home office dificultan la desconexión total. El equipo necesita un descanso físico y mental real en un entorno natural y libre de pantallas.</p>
+        </div>
+        <div class="problem-card hover-lift">
+          <h3>2. Barreras en la Comunicación</h3>
+          <p>La interacción diaria mediada por pantallas limita las relaciones humanas. Falta un espacio presencial para compartir, conversar de forma informal y generar empatía entre compañeros.</p>
+        </div>
+        <div class="problem-card hover-lift">
+          <h3>3. Pérdida de Cohesión Cultural</h3>
+          <p>El rápido crecimiento del equipo técnico aleja a los nuevos integrantes de la cultura central. Es fundamental un encuentro vivencial para alinearse y volver a motivarse con los objetivos de la empresa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3: LA SOLUCIÓN (ADAPTADO POR BRIEF-EXPRESS) -->
+  <section id="solucion" class="solution text-center">
+    <div class="section-container">
+      <span class="section-tag">Nuestra Propuesta</span>
+      <h2 class="section-title">La Respuesta de Los Lapachos</h2>
+      <p class="solution-intro">
+        "Proponemos una experiencia de inmersión en la naturaleza misionera, diseñada específicamente para contrarrestar el burnout, reescribir las dinámicas de comunicación del equipo técnico y potenciar la alineación estratégica."
+      </p>
+      <div class="solution-grid">
+        <div class="solution-item hover-lift">
+          <h3>Desconexión Digital & Confort Colonial</h3>
+          <p>Hospedaje exclusivo en nuestra Casona Colonial para 10 personas. Un espacio privado, cómodo y en medio de la selva para garantizar un verdadero descanso y relajación.</p>
+        </div>
+        <div class="solution-item hover-lift">
+          <h3>Dinámicas de Integración (Team Building)</h3>
+          <p>Uso de nuestras canchas de césped natural para dinámicas deportivas, y recorridos guiados por senderos de monte nativo para bajar los niveles de cortisol y entablar diálogos cara a cara.</p>
+        </div>
+        <div class="solution-item hover-lift">
+          <h3>Espacio de Asado y Charlas en el Quincho</h3>
+          <p>La noche final se celebra en el Quincho principal. Una velada alrededor del fuego de nuestro horno de barro y parrilla para consolidar los lazos del equipo a través de la gastronomía regional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- SECCIÓN 5: POR QUÉ NOSOTROS -->
+  <section class="why-us">
+    <div class="section-container">
+      <div class="why-us-grid">
+        <img src="lodge.jpg" class="why-us-image" alt="Los Lapachos Lodge">
+        <div>
+          <span class="section-tag">¿Por qué elegirnos?</span>
+          <h2 class="section-title" style="display:block; text-align:left;">Un Entorno Único para tu Equipo</h2>
+          <ul class="why-us-bullets">
+            <li><strong>Privacidad Total:</strong> Predio reservado en exclusiva para tu grupo técnico, sin interferencias de otros visitantes.</li>
+            <li><strong>Infraestructura Completa:</strong> Alojamiento colonial, áreas deportivas, senderos y quincho de gran capacidad a tu entera disposición.</li>
+            <li><strong>Naturaleza y Confort:</strong> El equilibrio perfecto entre la selva virgen de Misiones y la comodidad que tu equipo necesita.</li>
+          </ul>
+          <a href="https://www.google.com/maps/place/los+lapachos+centro+recreativo/data=!4m2!3m1!1s0x94f861c5e01dd113:0xa2a0f9eab5c305ab?sa=X&ved=1t:242&ictx=111" target="_blank" class="btn-cta btn-glow" style="margin-top: 2rem; display: inline-flex; align-items: center; gap: 10px; text-decoration: none;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:-2px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Ver ubicación en Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 6: INVERSIÓN (DESGLOSE INTERACTIVO - SKILL: PRODUCT-CATALOG) -->
+  <section id="inversion" class="investment">
+    <div class="section-container">
+      <div class="text-center">
+        <span class="section-tag">Presupuesto Real</span>
+        <h2 class="section-title">Plan de Inversión Estimado</h2>
+      </div>
+      
+      <!-- CALCULADORA INTERACTIVA DE INVERSIÓN (SKILL: PRODUCT-CATALOG) -->
+      <div class="calc-box glass-container-light">
+        <div class="calc-inputs">
+          <!-- Calendario de Disponibilidad -->
+          <div class="input-group" id="group-calendar">
+            <span class="input-label">1. Seleccioná tus Fechas en el Calendario</span>
+            <div class="calendar-widget">
+              <div class="calendar-header">
+                <span>Julio 2026</span>
+              </div>
+              <div class="calendar-grid">
+                <span class="calendar-day-header">Do</span>
+                <span class="calendar-day-header">Lu</span>
+                <span class="calendar-day-header">Ma</span>
+                <span class="calendar-day-header">Mi</span>
+                <span class="calendar-day-header">Ju</span>
+                <span class="calendar-day-header">Vi</span>
+                <span class="calendar-day-header">Sa</span>
+              </div>
+              <div class="calendar-grid" id="calendar-grid" style="margin-top: 5px;">
+                <!-- Se poblará por JS -->
+              </div>
+            </div>
+            <input type="hidden" id="selected-date" value="">
+            <span id="calendar-warning" style="font-size: 0.8rem; color: #D9534F; display: none; font-weight: 600; margin-bottom: 0.5rem;">⚠️ Por favor selecciona una fecha de inicio disponible en el calendario.</span>
+          </div>
+          <!-- Evento Principal: Hospedaje Colonial (Alquiler de la Casa) -->
+          <div class="input-group" style="background: rgba(45, 61, 38, 0.05); border: 2px solid var(--color-primary); border-radius: 16px; padding: 1.5rem; margin-top: 1rem;">
+            <div style="font-weight:700; color:var(--color-primary); font-size:1.15rem; margin-bottom:1rem; display:flex; align-items:center; justify-content:space-between;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L8.707 1.5Z"/>
+                </svg>
+                <span>Hospedaje Casona Colonial</span>
+              </div>
+              <input type="checkbox" id="chk-hospedaje" checked onchange="toggleHospedaje()" style="width:20px; height:20px; cursor:pointer; accent-color:var(--color-primary);">
+            </div>
+            
+            <div id="hospedaje-controls">
+              <div class="input-label-row">
+                <span class="input-label">Noches Calculadas en Calendario</span>
+                <span class="input-value" id="val-nights">2 Noches</span>
+              </div>
+              <span style="font-size:0.8rem; opacity:0.75; color: var(--color-dark); margin-bottom:1rem; display:block;">Tarifa: $95.000 ARS / noche (Casona completa para hasta 10 personas).</span>
+            </div>
+
+            <div class="input-label-row" style="margin-top: 1rem; border-top: 1px solid rgba(45, 61, 38, 0.15); padding-top: 1rem;">
+              <span class="input-label">Cantidad de Personas</span>
+              <span class="input-value" id="val-guests">10 Personas</span>
+            </div>
+            <input type="range" id="input-guests" min="1" max="30" value="10" class="slider" oninput="calculateTotal()">
+          </div>
+
+          <!-- Servicios Adicionales en Formato Card -->
+          <div class="input-group" style="margin-top: 1rem;">
+            <span class="input-label">Servicios y Actividades Adicionales</span>
+            <div class="services-select">
+              <!-- Entrada General -->
+              <div class="service-option-card selected" id="opt-entrada" onclick="toggleOption('entrada', 4000)">
+                <div class="option-details">
+                  <input type="checkbox" id="chk-entrada" class="option-checkbox" checked style="pointer-events:none;">
+                  <span class="option-title">Entrada General (Acceso al Predio)</span>
+                </div>
+                <span class="option-price" id="price-label-entrada">+$3.000 ARS / pers</span>
+              </div>
+
+              <!-- Alquiler de Quincho -->
+              <div class="service-option-card selected" id="opt-quincho" onclick="toggleOption('quincho', 120000)">
+                <div class="option-details">
+                  <input type="checkbox" id="chk-quincho" class="option-checkbox" checked style="pointer-events:none;">
+                  <span class="option-title">Alquiler de Quincho (Jornada Completa para 150 pers)</span>
+                </div>
+                <span class="option-price">+$120.000 ARS</span>
+              </div>
+
+              <!-- Canchas de Fútbol -->
+              <div class="service-option-card" id="opt-soccer" onclick="toggleOption('soccer', 15000)">
+                <div class="option-details">
+                  <input type="checkbox" id="chk-soccer" class="option-checkbox" style="pointer-events:none;">
+                  <span class="option-title">Alquiler de Cancha de Fútbol (Césped Natural)</span>
+                </div>
+                <span class="option-price">+$15.000 ARS / hora</span>
+              </div>
+
+              <!-- Horas Cancha de Fútbol (Se muestra dinámicamente) -->
+              <div class="input-group" id="group-soccer-hours" style="display:none; padding:1.2rem; background:var(--color-background); border:1px solid rgba(18,30,21,0.1); border-radius:10px; margin-top:-0.5rem; margin-bottom:0.5rem;">
+                <div class="input-label-row">
+                  <span class="input-label" style="font-size:0.9rem;">Horas de Uso de la Cancha</span>
+                  <span class="input-value" id="val-soccer" style="font-size:0.95rem;">2 Horas</span>
+                </div>
+                <input type="range" id="input-soccer" min="1" max="10" value="2" class="slider" oninput="calculateTotal()">
+              </div>
+
+              <!-- Senderismo Guiado -->
+              <div class="service-option-card selected" id="opt-senderismo" onclick="toggleOption('senderismo', 5000)">
+                <div class="option-details">
+                  <input type="checkbox" id="chk-senderismo" class="option-checkbox" checked style="pointer-events:none;">
+                  <span class="option-title">Senderismo Guiado por Monte Nativo</span>
+                </div>
+                <span class="option-price">+$5.000 ARS / pers</span>
+              </div>
+
+              <!-- Cabalgatas -->
+              <div class="service-option-card" id="opt-cabalgatas" onclick="toggleOption('cabalgatas', 12000)">
+                <div class="option-details">
+                  <input type="checkbox" id="chk-cabalgatas" class="option-checkbox" style="pointer-events:none;">
+                  <span class="option-title">Paseo de Cabalgatas Guiadas</span>
+                </div>
+                <span class="option-price">+$12.000 ARS / pers</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna de Resultados Financieros -->
+        <div class="calc-results">
+          <div>
+            <h3 class="results-title">Resumen de Inversión</h3>
+            <div class="results-price" id="total-price">$360.000</div>
+            
+            <div class="results-details">
+              <div class="detail-row" id="row-detail-hospedaje">
+                <span>Hospedaje Colonial:</span>
+                <span id="detail-hospedaje">$190.000 ARS</span>
+              </div>
+              <div class="detail-row" id="row-detail-entrada">
+                <span>Entrada General:</span>
+                <span id="detail-entrada">$30.000 ARS</span>
+              </div>
+              <div class="detail-row" id="row-detail-quincho">
+                <span>Alquiler de Quincho:</span>
+                <span id="detail-quincho">$120.000 ARS</span>
+              </div>
+              <div class="detail-row" id="row-detail-soccer" style="display:none;">
+                <span>Cancha de Fútbol:</span>
+                <span id="detail-soccer">$0 ARS</span>
+              </div>
+              <div class="detail-row" id="row-detail-senderismo">
+                <span>Senderismo Guiado:</span>
+                <span id="detail-senderismo">$50.000 ARS</span>
+              </div>
+              <div class="detail-row" id="row-detail-cabalgatas" style="display:none;">
+                <span>Cabalgatas Guiadas:</span>
+                <span id="detail-cabalgatas">$0 ARS</span>
+              </div>
+            </div>
+          </div>
+          <button class="btn-submit-proposal btn-glow" onclick="openModal()">Aceptar y Reservar Propuesta</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 7: LLAMADA A LA ACCIÓN (CTA FINAL) -->
+  <section class="cta-section">
+    <div class="cta-container">
+      <h2 class="cta-title">¿Listo para llevar a TechMinds a la selva?</h2>
+      <p class="cta-description">Hacé clic en el botón de abajo para que nuestro coordinador comercial reserve las fechas y te envíe el contrato formal con los términos y políticas de reserva.</p>
+      <button class="btn-cta btn-glow" style="border:none; cursor:pointer;" onclick="openModal()">Confirmar Fechas de Retiro</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 65" width="130" height="42">
+        <rect width="200" height="65" rx="8" fill="#121E15" />
+        <path d="M 35 48 C 32 48, 31 32, 30 27 C 18 27, 14 18, 22 12 C 27 5, 43 5, 48 12 C 56 18, 52 27, 40 27 C 39 32, 38 48, 35 48 Z" fill="#2D3D26" />
+        <text x="125" y="32" font-family="'Inter', sans-serif" font-weight="700" font-size="14" fill="#FFFFFF" text-anchor="middle">Los LAPACHOS</text>
+        <text x="125" y="47" font-family="'Inter', sans-serif" font-weight="500" font-size="5.5" fill="#E0A96D" text-anchor="middle" letter-spacing="1">CENTRO RECREATIVO</text>
+      </svg>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#problema">El Reto</a></li>
+      <li><a href="#solucion">Solución</a></li>
+      <li><a href="#inversion">Inversión</a></li>
+      <li><a href="mailto:contacto@loslapachosmisiones.com">contacto@loslapachosmisiones.com</a></li>
+    </ul>
+    <p class="footer-text">© 2026 Los Lapachos Centro Recreativo - Misiones, Argentina. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- VENTANA MODAL -->
+  <div class="modal" id="info-modal">
+    <div class="modal-content">
+      <div class="modal-icon" style="color: var(--color-accent); font-size: 3.5rem; margin-bottom: 1rem;">✓</div>
+      <h3 class="modal-title">Propuesta & Plan de Retiro</h3>
+      <p class="modal-text" style="font-size: 0.95rem; margin-bottom: 1.5rem; opacity: 0.85;">Hemos generado la cotización personalizada y el cronograma para TechMinds Solutions:</p>
+      
+      <div class="modal-grid">
+        <!-- Izquierda: Desglose de Servicios -->
+        <div class="modal-summary-box">
+          <h4 class="modal-section-title">Servicios Reservados</h4>
+          <div id="modal-services-list">
+            <!-- Dinámico -->
+          </div>
+          <div class="modal-total-row">
+            <span>Total Estimado:</span>
+            <span id="modal-total-price-display">$0 ARS</span>
+          </div>
+        </div>
+        
+        <!-- Derecha: Cronograma Dinámico -->
+        <div class="modal-cronograma-box">
+          <h4 class="modal-section-title">Cronograma Sugerido</h4>
+          <div id="modal-cronograma-list">
+            <!-- Dinámico -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Formulario de Datos del Cliente -->
+      <div style="margin: 1.5rem 0; background: rgba(45, 61, 38, 0.04); padding: 1.2rem; border-radius: 12px; border: 1px solid rgba(45, 61, 38, 0.15); text-align: left;">
+        <h4 style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.8rem; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16" style="color: var(--color-primary);">
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+          </svg>
+          Completá tus Datos de Contacto
+        </h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem;">
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--color-dark);">Nombre y Apellido *</label>
+            <input type="text" id="client-name" placeholder="Juan Pérez" style="width: 100%; padding: 0.5rem 0.8rem; border: 1px solid rgba(18, 30, 21, 0.2); border-radius: 8px; font-size: 0.85rem;" required>
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--color-dark);">Teléfono *</label>
+            <input type="tel" id="client-phone" placeholder="+54 9 3755 123456" style="width: 100%; padding: 0.5rem 0.8rem; border: 1px solid rgba(18, 30, 21, 0.2); border-radius: 8px; font-size: 0.85rem;" required>
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--color-dark);">Gmail / Correo *</label>
+            <input type="email" id="client-email" placeholder="nombre@gmail.com" style="width: 100%; padding: 0.5rem 0.8rem; border: 1px solid rgba(18, 30, 21, 0.2); border-radius: 8px; font-size: 0.85rem;" required>
+          </div>
+        </div>
+        <span id="form-warning" style="display: none; color: #D9534F; font-size: 0.8rem; font-weight: 600; margin-top: 0.5rem;">⚠️ Por favor completá todos los campos obligatorios.</span>
+      </div>
+      
+      <button class="btn-close-modal btn-glow" id="btn-confirm-reserve" onclick="confirmReservation()">Confirmar y Enviar por WhatsApp</button>
+      <button class="btn-secondary-modal" onclick="closeModal()" style="background:transparent; border:none; color:rgba(18, 30, 21, 0.6); padding:0.8rem; margin-top:1rem; cursor:pointer; text-decoration:underline; width:100%; font-size:0.9rem;">Cancelar</button>
+    </div>
+  </div>
+
+  <script>
+    // TARIFAS OFICIALES Y ESTIMADAS (SKILL: PRODUCT-CATALOG)
+    const PRICING = {
+      hospedajeNoche: 95000,
+      entradaIndiv: 4000,
+      entradaFamilia: 3000,
+      canchaHora: 15000,
+      quinchoJornada: 120000,
+      senderismoPersona: 5000,
+      cabalgatasPersona: 12000
+    };
+
+    // OPCIONES SELECCIONADAS
+    let selectedOptions = {
+      entrada: true,
+      quincho: true,
+      soccer: false,
+      senderismo: true,
+      cabalgatas: false
+    };
+
+    // ESTADO DEL CALENDARIO E INTEGRACIÓN
+    let bookedDays = [14, 22];
+    let selectedStartDay = 15; 
+    let selectedEndDay = 17;
+    let hoveredDay = null;
+
+    function toggleHospedaje() {
+      const isChecked = document.getElementById('chk-hospedaje').checked;
+      document.getElementById('hospedaje-controls').style.display = isChecked ? 'block' : 'none';
+      document.getElementById('group-calendar').style.display = isChecked ? 'block' : 'none';
+      
+      if (!isChecked) {
+        document.getElementById('selected-date').value = "Fecha a coordinar con la administración";
+      } else {
+        if (selectedStartDay) {
+          selectedEndDay = selectedStartDay + 2;
+          if (selectedEndDay > 31) selectedEndDay = 31;
+          document.getElementById('selected-date').value = `Del ${selectedStartDay} al ${selectedEndDay} de Julio de 2026`;
+        }
+      }
+      calculateTotal();
+    }
+
+    function toggleOption(id, price) {
+      selectedOptions[id] = !selectedOptions[id];
+      const card = document.getElementById(`opt-${id}`);
+      const chk = document.getElementById(`chk-${id}`);
+      
+      if (selectedOptions[id]) {
+        card.classList.add('selected');
+        if (chk) chk.checked = true;
+        if (id === 'soccer') document.getElementById('group-soccer-hours').style.display = 'block';
+      } else {
+        card.classList.remove('selected');
+        if (chk) chk.checked = false;
+        if (id === 'soccer') document.getElementById('group-soccer-hours').style.display = 'none';
+      }
+      calculateTotal();
+    }
+
+    function calculateTotal() {
+      const isHospedaje = document.getElementById('chk-hospedaje').checked;
+      const guests = parseInt(document.getElementById('input-guests').value);
+      const soccerHours = selectedOptions.soccer ? parseInt(document.getElementById('input-soccer').value) : 0;
+
+      let nights = 0;
+      if (selectedStartDay && selectedEndDay) {
+        nights = selectedEndDay - selectedStartDay;
+      }
+      
+      document.getElementById('val-nights').innerText = nights === 1 ? '1 Noche' : `${nights} Noches`;
+      document.getElementById('val-guests').innerText = `${guests} Personas`;
+      document.getElementById('val-soccer').innerText = soccerHours === 1 ? '1 Hora' : `${soccerHours} Horas`;
+      
+      const entradaPrecioUnitario = guests > 4 ? PRICING.entradaFamilia : PRICING.entradaIndiv;
+      
+      const label = document.getElementById('price-label-entrada');
+      if (label) {
+        if (guests > 4) {
+          label.innerText = `+$${PRICING.entradaFamilia.toLocaleString('es-AR')} ARS / pers (Promo Familiar)`;
+        } else {
+          label.innerText = `+$${PRICING.entradaIndiv.toLocaleString('es-AR')} ARS / pers`;
+        }
+      }
+      
+      const hospedajeSubtotal = isHospedaje ? (nights * PRICING.hospedajeNoche) : 0;
+      const entradaSubtotal = selectedOptions.entrada ? (guests * entradaPrecioUnitario) : 0;
+      const soccerSubtotal = soccerHours * PRICING.canchaHora;
+      const quinchoSubtotal = selectedOptions.quincho ? PRICING.quinchoJornada : 0;
+      const senderismoSubtotal = selectedOptions.senderismo ? (guests * PRICING.senderismoPersona) : 0;
+      const cabalgatasSubtotal = selectedOptions.cabalgatas ? (guests * PRICING.cabalgatasPersona) : 0;
+      
+      const total = hospedajeSubtotal + entradaSubtotal + soccerSubtotal + quinchoSubtotal + senderismoSubtotal + cabalgatasSubtotal;
+      
+      document.getElementById('detail-hospedaje').innerText = `$${hospedajeSubtotal.toLocaleString('es-AR')} ARS`;
+      document.getElementById('detail-entrada').innerText = `$${entradaSubtotal.toLocaleString('es-AR')} ARS`;
+      document.getElementById('detail-soccer').innerText = `$${soccerSubtotal.toLocaleString('es-AR')} ARS`;
+      document.getElementById('detail-quincho').innerText = `$${quinchoSubtotal.toLocaleString('es-AR')} ARS`;
+      document.getElementById('detail-senderismo').innerText = `$${senderismoSubtotal.toLocaleString('es-AR')} ARS`;
+      document.getElementById('detail-cabalgatas').innerText = `$${cabalgatasSubtotal.toLocaleString('es-AR')} ARS`;
+      
+      document.getElementById('row-detail-hospedaje').style.display = isHospedaje ? 'flex' : 'none';
+      document.getElementById('row-detail-entrada').style.display = selectedOptions.entrada ? 'flex' : 'none';
+      document.getElementById('row-detail-soccer').style.display = selectedOptions.soccer ? 'flex' : 'none';
+      document.getElementById('row-detail-quincho').style.display = selectedOptions.quincho ? 'flex' : 'none';
+      document.getElementById('row-detail-senderismo').style.display = selectedOptions.senderismo ? 'flex' : 'none';
+      document.getElementById('row-detail-cabalgatas').style.display = selectedOptions.cabalgatas ? 'flex' : 'none';
+      
+      document.getElementById('total-price').innerText = `$${total.toLocaleString('es-AR')}`;
+      renderCalendar();
+    }
+
+    function renderCalendar() {
+      const grid = document.getElementById('calendar-grid');
+      grid.innerHTML = '';
+      const isHospedaje = document.getElementById('chk-hospedaje').checked;
+
+      for (let i = 0; i < 3; i++) {
+        const cell = document.createElement('span');
+        cell.className = 'calendar-cell empty';
+        grid.appendChild(cell);
+      }
+      for (let day = 1; day <= 31; day++) {
+        const cell = document.createElement('span');
+        cell.className = 'calendar-cell';
+        cell.innerText = day;
+        if (bookedDays.includes(day)) {
+          cell.classList.add('booked');
+        } else {
+          if (selectedStartDay === day) {
+            cell.classList.add('selected-start');
+            if (!isHospedaje || selectedStartDay === selectedEndDay) cell.style.borderRadius = "8px";
+          } else if (isHospedaje && selectedEndDay === day) {
+            cell.classList.add('selected-end');
+          } else if (isHospedaje && selectedStartDay && selectedEndDay && day > selectedStartDay && day < selectedEndDay) {
+            cell.classList.add('selected-range');
+          } else if (isHospedaje && selectedStartDay && !selectedEndDay && hoveredDay && day > selectedStartDay && day <= hoveredDay) {
+            cell.classList.add('range-preview');
+          }
+          cell.onclick = () => selectDay(day);
+          cell.onmouseenter = () => {
+            if (isHospedaje && selectedStartDay && !selectedEndDay && day > selectedStartDay) {
+              hoveredDay = day;
+              updateCalendarVisuals();
+            }
+          };
+        }
+        grid.appendChild(cell);
+      }
+    }
+
+    function updateCalendarVisuals() {
+      const isHospedaje = document.getElementById('chk-hospedaje').checked;
+      const cells = document.querySelectorAll('.calendar-cell:not(.empty):not(.booked)');
+      cells.forEach(cell => {
+        const day = parseInt(cell.innerText);
+        cell.className = 'calendar-cell';
+        if (selectedStartDay === day) {
+          cell.classList.add('selected-start');
+          if (!isHospedaje || selectedStartDay === selectedEndDay) cell.style.borderRadius = "8px";
+        } else if (isHospedaje && selectedEndDay === day) {
+          cell.classList.add('selected-end');
+        } else if (isHospedaje && selectedStartDay && selectedEndDay && day > selectedStartDay && day < selectedEndDay) {
+          cell.classList.add('selected-range');
+        } else if (isHospedaje && selectedStartDay && !selectedEndDay && hoveredDay && day > selectedStartDay && day <= hoveredDay) {
+          cell.classList.add('range-preview');
+        }
+      });
+    }
+
+    function selectDay(day) {
+      const isHospedaje = document.getElementById('chk-hospedaje').checked;
+      if (!isHospedaje) {
+        selectedStartDay = day;
+        selectedEndDay = day;
+        document.getElementById('selected-date').value = `${day} de Julio de 2026 (Día completo)`;
+      } else {
+        if (selectedStartDay && selectedEndDay && selectedStartDay !== selectedEndDay) {
+          selectedStartDay = day;
+          selectedEndDay = null;
+          document.getElementById('selected-date').value = `${day} de Julio de 2026`;
+        } else if (!selectedStartDay || selectedStartDay === selectedEndDay) {
+          selectedStartDay = day;
+          selectedEndDay = null;
+          document.getElementById('selected-date').value = `${day} de Julio de 2026`;
+        } else {
+          if (day < selectedStartDay) {
+            selectedStartDay = day;
+            document.getElementById('selected-date').value = `${day} de Julio de 2026`;
+          } else if (day === selectedStartDay) {
+            selectedEndDay = day;
+            document.getElementById('selected-date').value = `${day} de Julio de 2026 (Día completo)`;
+          } else {
+            let containsBooked = false;
+            for (let d = selectedStartDay; d <= day; d++) {
+              if (bookedDays.includes(d)) {
+                containsBooked = true;
+                break;
+              }
+            }
+            if (containsBooked) {
+              alert("⚠️ El rango seleccionado incluye días ya ocupados. Por favor elegí otro rango.");
+              return;
+            }
+            selectedEndDay = day;
+            document.getElementById('selected-date').value = `Del ${selectedStartDay} al ${selectedEndDay} de Julio de 2026`;
+          }
+        }
+      }
+      document.getElementById('calendar-warning').style.display = 'none';
+      calculateTotal();
+    }
+
+    function openModal() {
+      const isHospedaje = document.getElementById('chk-hospedaje').checked;
+      
+      if (isHospedaje && (!selectedStartDay || !selectedEndDay || selectedStartDay === selectedEndDay)) {
+        document.getElementById('calendar-warning').innerText = "⚠️ Por favor seleccioná un rango de fechas en el calendario (check-in y check-out).";
+        document.getElementById('calendar-warning').style.display = 'block';
+        document.getElementById('calendar-warning').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const modal = document.getElementById('info-modal');
+      const nights = isHospedaje ? selectedEndDay - selectedStartDay : 0;
+      const guests = parseInt(document.getElementById('input-guests').value);
+      const soccerHours = selectedOptions.soccer ? parseInt(document.getElementById('input-soccer').value) : 0;
+      
+      const entradaPrecioUnitario = guests > 4 ? PRICING.entradaFamilia : PRICING.entradaIndiv;
+      const hospedajeSubtotal = isHospedaje ? (nights * PRICING.hospedajeNoche) : 0;
+      const entradaSubtotal = selectedOptions.entrada ? (guests * entradaPrecioUnitario) : 0;
+      const soccerSubtotal = soccerHours * PRICING.canchaHora;
+      const quinchoSubtotal = selectedOptions.quincho ? PRICING.quinchoJornada : 0;
+      const senderismoSubtotal = selectedOptions.senderismo ? (guests * PRICING.senderismoPersona) : 0;
+      const cabalgatasSubtotal = selectedOptions.cabalgatas ? (guests * PRICING.cabalgatasPersona) : 0;
+      const total = hospedajeSubtotal + soccerSubtotal + quinchoSubtotal + senderismoSubtotal + cabalgatasSubtotal + entradaSubtotal;
+      
+      let servicesHtml = `<div class="modal-item-row" style="font-weight:700; border-bottom:1px dashed #ccc; padding-bottom:5px; margin-bottom: 0.8rem;"><span>Estadía:</span><span>${document.getElementById('selected-date').value}</span></div>`;
+      if (isHospedaje) {
+        servicesHtml += `<div class="modal-item-row"><span>Hospedaje Colonial (${nights} noches)</span><span>$${hospedajeSubtotal.toLocaleString('es-AR')}</span></div>`;
+      }
+      if (selectedOptions.entrada) {
+        servicesHtml += `<div class="modal-item-row"><span>Entrada General (${guests} pers)</span><span>$${entradaSubtotal.toLocaleString('es-AR')}</span></div>`;
+      }
+      if (selectedOptions.quincho) servicesHtml += `<div class="modal-item-row"><span>Alquiler de Quincho</span><span>$${quinchoSubtotal.toLocaleString('es-AR')}</span></div>`;
+      if (selectedOptions.soccer && soccerHours > 0) servicesHtml += `<div class="modal-item-row"><span>Cancha de Fútbol (${soccerHours} hs)</span><span>$${soccerSubtotal.toLocaleString('es-AR')}</span></div>`;
+      if (selectedOptions.senderismo) servicesHtml += `<div class="modal-item-row"><span>Senderismo Guiado</span><span>$${senderismoSubtotal.toLocaleString('es-AR')}</span></div>`;
+      if (selectedOptions.cabalgatas) servicesHtml += `<div class="modal-item-row"><span>Cabalgatas Guiadas</span><span>$${cabalgatasSubtotal.toLocaleString('es-AR')}</span></div>`;
+      
+      document.getElementById('modal-services-list').innerHTML = servicesHtml;
+      document.getElementById('modal-total-price-display').innerText = `$${total.toLocaleString('es-AR')} ARS`;
+      
+      let cronogramaHtml = '';
+      if (isHospedaje && nights > 0) {
+        cronogramaHtml += `
+          <div class="modal-day-card">
+            <h5>Día 1: Desconexión y Llegada</h5>
+            <p><strong>14:00hs:</strong> Check-in en la Casona Colonial y bienvenida del grupo (${guests} personas). Recorrido libre por el predio.</p>
+          </div>
+        `;
+        let dia2Details = '';
+        if (selectedOptions.soccer && soccerHours > 0) {
+          dia2Details += `<strong>10:00hs:</strong> Torneo recreativo de fútbol (${soccerHours} hs).<br>`;
+        }
+        if (selectedOptions.senderismo) {
+          dia2Details += `<strong>15:30hs:</strong> Senderismo guiado por el monte nativo.<br>`;
+        }
+        if (selectedOptions.cabalgatas) {
+          dia2Details += `<strong>17:30hs:</strong> Paseo de Cabalgatas guiadas para recorrer los paisajes misioneros a caballo.<br>`;
+        }
+        cronogramaHtml += `
+          <div class="modal-day-card">
+            <h5>Día 2: Cohesión y Actividades</h5>
+            <p>${dia2Details || 'Día libre de integración y disfrute de las instalaciones del predio.'}</p>
+          </div>
+        `;
+        let dia3Details = '';
+        if (selectedOptions.quincho) {
+          dia3Details += `<strong>10:00hs:</strong> Actividad grupal de cierre. <strong>12:30hs:</strong> Almuerzo y asado de despedida en el Quincho principal con parrilla.`;
+        } else {
+          dia3Details += `<strong>10:00hs:</strong> Cierre de la estadía. <strong>12:30hs:</strong> Almuerzo de camaradería.`;
+        }
+        cronogramaHtml += `
+          <div class="modal-day-card">
+            <h5>Día 3: Estrategia y Cierre</h5>
+            <p>${dia3Details} <br><strong>10:00hs del día siguiente:</strong> Check-out de la casona.</p>
+          </div>
+        `;
+      } else {
+        let dayDetails = '<strong>09:00hs:</strong> Recepción y desayuno de bienvenida.<br>';
+        if (selectedOptions.soccer && soccerHours > 0) {
+          dayDetails += `<strong>10:00hs:</strong> Torneo recreativo de fútbol (${soccerHours} hs).<br>`;
+        }
+        if (selectedOptions.quincho) {
+          dayDetails += `<strong>13:00hs:</strong> Almuerzo / Asado en el Quincho principal.<br>`;
+        } else {
+          dayDetails += `<strong>13:00hs:</strong> Almuerzo libre.<br>`;
+        }
+        if (selectedOptions.senderismo) {
+          dayDetails += `<strong>15:30hs:</strong> Actividad de Senderismo guiado por el monte.<br>`;
+        }
+        if (selectedOptions.cabalgatas) {
+          dayDetails += `<strong>17:00hs:</strong> Paseo guiado de Cabalgatas misioneras.<br>`;
+        }
+        dayDetails += `<strong>18:30hs:</strong> Fin de la jornada y despedida del grupo.`;
+        
+        cronogramaHtml += `
+          <div class="modal-day-card">
+            <h5>Cronograma de la Jornada (Día Completo)</h5>
+            <p>${dayDetails}</p>
+          </div>
+        `;
+      }
+      
+      document.getElementById('modal-cronograma-list').innerHTML = cronogramaHtml;
+      modal.classList.add('active');
+    }
+
+    function confirmReservation() {
+      const name = document.getElementById('client-name').value.trim();
+      const phone = document.getElementById('client-phone').value.trim();
+      const email = document.getElementById('client-email').value.trim();
+
+      if (!name || !phone || !email) {
+        document.getElementById('form-warning').style.display = 'block';
+        document.getElementById('form-warning').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      document.getElementById('form-warning').style.display = 'none';
+
+      const btn = document.getElementById('btn-confirm-reserve');
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = `<span class="calc-loading-spinner" style="display:inline-block; width:14px; height:14px; border:2px solid white; border-radius:50%; border-top-color:transparent; animation:spin 0.8s linear infinite; margin-right:8px; vertical-align:middle;"></span> Enviando cotización...`;
+
+      const isHospedaje = document.getElementById('chk-hospedaje').checked;
+      const nights = selectedEndDay - selectedStartDay;
+      const guests = parseInt(document.getElementById('input-guests').value);
+      const soccerHours = selectedOptions.soccer ? parseInt(document.getElementById('input-soccer').value) : 0;
+      
+      const entradaPrecioUnitario = guests > 4 ? PRICING.entradaFamilia : PRICING.entradaIndiv;
+      const hospedajeSubtotal = isHospedaje ? (nights * PRICING.hospedajeNoche) : 0;
+      const entradaSubtotal = selectedOptions.entrada ? (guests * entradaPrecioUnitario) : 0;
+      const soccerSubtotal = soccerHours * PRICING.canchaHora;
+      const quinchoSubtotal = selectedOptions.quincho ? PRICING.quinchoJornada : 0;
+      const senderismoSubtotal = selectedOptions.senderismo ? (guests * PRICING.senderismoPersona) : 0;
+      const cabalgatasSubtotal = selectedOptions.cabalgatas ? (guests * PRICING.cabalgatasPersona) : 0;
+      const total = hospedajeSubtotal + entradaSubtotal + soccerSubtotal + quinchoSubtotal + senderismoSubtotal + cabalgatasSubtotal;
+      const dateText = document.getElementById('selected-date').value;
+
+      const messageText = `¡Hola Los Lapachos! 👋 Quisiera solicitar una reserva formal con el siguiente detalle de cotización:\n\n` +
+                           `📌 *DATOS DE CONTACTO:*\n` +
+                           `• *Nombre:* ${name}\n` +
+                           `• *Teléfono:* ${phone}\n` +
+                           `• *Email:* ${email}\n\n` +
+                           `📌 *DETALLES DEL RETIRO:*\n` +
+                           `• *Cliente:* TechMinds Solutions\n` +
+                           `• *Cantidad de Personas:* ${guests} personas\n` +
+                           `• *Fecha:* ${dateText}\n` +
+                           `• *Tipo de Estadía:* ${isHospedaje ? nights + ' noches (Hospedaje Casona Colonial)' : 'Visita de Campo (Día único)'}\n\n` +
+                           `💼 *SERVICIOS INCLUIDOS:*\n` +
+                           (isHospedaje ? `  - Hospedaje Colonial (${nights} n): $${hospedajeSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
+                           (selectedOptions.entrada ? `  - Entrada General (${guests} pers): $${entradaSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
+                           (selectedOptions.quincho ? `  - Alquiler de Quincho: $${quinchoSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
+                           (selectedOptions.soccer && soccerHours > 0 ? `  - Canchas de Fútbol (${soccerHours} hs): $${soccerSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
+                           (selectedOptions.senderismo ? `  - Senderismo Guiado: $${senderismoSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
+                           (selectedOptions.cabalgatas ? `  - Cabalgatas Guiadas: $${cabalgatasSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
+                           `\n💵 *TOTAL ESTIMADO:* $${total.toLocaleString('es-AR')} ARS\n\n` +
+                           `¿Me confirmarían si tienen disponibilidad para congelar la reserva? ¡Muchas gracias!`;
+
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=543755680063&text=${encodeURIComponent(messageText)}`;
+      
+      // Simular envío de correo electrónico a Gmail (Asíncrono 1.5s)
+      setTimeout(() => {
+        // Mostrar Toast de Confirmación
+        const toast = document.getElementById('email-toast');
+        document.getElementById('toast-email-text').innerText = `Se envió una copia de la reserva a ${email}.`;
+        toast.style.right = '20px';
+        
+        // Bloquear días en el calendario local
+        if (selectedStartDay && selectedEndDay) {
+          for (let d = selectedStartDay; d <= selectedEndDay; d++) {
+            bookedDays.push(d);
+          }
+          selectedStartDay = null;
+          selectedEndDay = null;
+          document.getElementById('selected-date').value = "";
+          renderCalendar();
+        }
+        
+        // Cerrar modal y abrir WhatsApp
+        closeModal();
+        window.open(whatsappUrl, '_blank');
+        
+        // Resetear botón de carga
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        
+        // Ocultar Toast tras 4 segundos
+        setTimeout(() => {
+          toast.style.right = '-350px';
+        }, 4000);
+      }, 1500);
+    }
+
+    function closeModal() {
+      document.getElementById('info-modal').classList.remove('active');
+    }
+
+    // Inicializar por defecto
+    document.getElementById('selected-date').value = `Del ${selectedStartDay} al ${selectedEndDay} de Julio de 2026`;
+    renderCalendar();
+    calculateTotal();
+  </script>
+
+  <!-- Toast de Notificación de Correo Enviado -->
+  <div id="email-toast" style="position: fixed; top: 20px; right: -350px; background: #121E15; color: white; padding: 1rem 1.2rem; border-radius: 12px; border-left: 5px solid var(--color-accent); box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 12px; transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); z-index: 9999;">
+    <span style="font-size: 1.5rem;">📧</span>
+    <div>
+      <h5 style="margin: 0; font-weight: 700; font-size: 0.95rem; color: var(--color-accent);">¡Correo Enviado!</h5>
+      <p style="margin: 0; font-size: 0.8rem; opacity: 0.85;" id="toast-email-text">Se envió una copia de la reserva a tu Gmail.</p>
+    </div>
+  </div>
+</body>
+</html>
