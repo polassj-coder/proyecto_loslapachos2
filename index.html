@@ -911,9 +911,101 @@
     }
 
     @media (max-width: 768px) {
+      header {
+        padding: 0.8rem 1rem;
+        flex-direction: column;
+        gap: 0.8rem;
+        text-align: center;
+      }
+      .logo-container img {
+        height: 52px;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.6rem 1rem;
+        font-size: 0.85rem;
+      }
+      .btn-contact {
+        width: 100%;
+        text-align: center;
+        padding: 0.6rem 1rem;
+      }
+      section {
+        padding: 3.5rem 1.2rem;
+      }
+      .hero {
+        padding: 5.5rem 1.2rem 3.5rem;
+      }
+      .hero-title {
+        font-size: 1.75rem;
+        line-height: 1.25;
+      }
+      .hero-subtitle {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+      }
+      .hero-description {
+        font-size: 0.95rem;
+        line-height: 1.55;
+      }
+      .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 1.8rem;
+      }
+      .solution-intro {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        margin-bottom: 2.5rem;
+      }
+      .calc-box {
+        padding: 1.5rem 1.1rem;
+        border-radius: 16px;
+        gap: 1.8rem;
+      }
+      .info-policy-banner div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+      }
+      .calc-results {
+        padding: 1.5rem 1.1rem;
+        border-radius: 16px;
+      }
+      .service-option-card {
+        padding: 0.9rem 1rem;
+      }
+      .option-title {
+        font-size: 0.95rem;
+      }
+      .option-price {
+        font-size: 0.88rem;
+      }
+      .modal-content {
+        padding: 2rem 1.2rem;
+        border-radius: 18px;
+        width: 95%;
+      }
       .modal-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
+      }
+      .contact-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.8rem !important;
+      }
+      .btn-cta {
+        width: 100%;
+        text-align: center;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+      }
+      footer {
+        padding: 3rem 1.2rem;
+      }
+      .footer-links {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: center;
       }
     }
 
@@ -1373,29 +1465,25 @@
         </div>
       </div>
       
-      <!-- Formulario de Datos del Cliente -->
-      <div style="margin: 1.5rem 0; background: rgba(45, 61, 38, 0.04); padding: 1.2rem; border-radius: 12px; border: 1px solid rgba(45, 61, 38, 0.15); text-align: left;">
-        <h4 style="font-weight: 700; color: var(--color-primary); margin-bottom: 0.8rem; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
-          <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16" style="color: var(--color-primary);">
+      <!-- Formulario de Datos del Cliente (Sin Email) -->
+      <div style="margin: 1.5rem 0; background: rgba(39, 55, 29, 0.35); padding: 1.2rem; border-radius: 12px; border: 1px solid rgba(200, 162, 74, 0.3); text-align: left;">
+        <h4 style="font-weight: 700; color: var(--color-accent); margin-bottom: 0.8rem; font-size: 1rem; display: flex; align-items: center; gap: 8px;">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16" style="color: var(--color-accent);">
             <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
           </svg>
           Completá tus Datos de Contacto
         </h4>
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8rem;">
+        <div class="contact-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
           <div>
-            <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--color-dark);">Nombre y Apellido *</label>
-            <input type="text" id="client-name" placeholder="Juan Pérez" style="width: 100%; padding: 0.5rem 0.8rem; border: 1px solid rgba(18, 30, 21, 0.2); border-radius: 8px; font-size: 0.85rem;" required>
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.3rem; color: #FFFFF7;">Nombre y Apellido *</label>
+            <input type="text" id="client-name" placeholder="Ej. Juan Pérez" style="width: 100%; padding: 0.65rem 0.9rem; border: 1px solid rgba(200, 162, 74, 0.4); background: #121E15; color: #FFFFF7; border-radius: 8px; font-size: 0.9rem;" required>
           </div>
           <div>
-            <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--color-dark);">Teléfono *</label>
-            <input type="tel" id="client-phone" placeholder="+54 9 3755 123456" style="width: 100%; padding: 0.5rem 0.8rem; border: 1px solid rgba(18, 30, 21, 0.2); border-radius: 8px; font-size: 0.85rem;" required>
-          </div>
-          <div>
-            <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--color-dark);">Gmail / Correo *</label>
-            <input type="email" id="client-email" placeholder="nombre@gmail.com" style="width: 100%; padding: 0.5rem 0.8rem; border: 1px solid rgba(18, 30, 21, 0.2); border-radius: 8px; font-size: 0.85rem;" required>
+            <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.3rem; color: #FFFFF7;">Teléfono / WhatsApp *</label>
+            <input type="tel" id="client-phone" placeholder="Ej. +54 9 3755 123456" style="width: 100%; padding: 0.65rem 0.9rem; border: 1px solid rgba(200, 162, 74, 0.4); background: #121E15; color: #FFFFF7; border-radius: 8px; font-size: 0.9rem;" required>
           </div>
         </div>
-        <span id="form-warning" style="display: none; color: #D9534F; font-size: 0.8rem; font-weight: 600; margin-top: 0.5rem;">⚠️ Por favor completá todos los campos obligatorios.</span>
+        <span id="form-warning" style="display: none; color: #E74C3C; font-size: 0.85rem; font-weight: 600; margin-top: 0.6rem;">⚠️ Por favor completá tu Nombre y Teléfono.</span>
       </div>
       
       <button class="btn-close-modal btn-glow" id="btn-confirm-reserve" onclick="confirmReservation()">Confirmar y Enviar por WhatsApp</button>
@@ -1634,9 +1722,8 @@
     function confirmReservation() {
       const name = document.getElementById('client-name').value.trim();
       const phone = document.getElementById('client-phone').value.trim();
-      const email = document.getElementById('client-email').value.trim();
 
-      if (!name || !phone || !email) {
+      if (!name || !phone) {
         document.getElementById('form-warning').style.display = 'block';
         document.getElementById('form-warning').scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
@@ -1646,14 +1733,16 @@
       const btn = document.getElementById('btn-confirm-reserve');
       const originalText = btn.innerHTML;
       btn.disabled = true;
-      btn.innerHTML = `<span class="calc-loading-spinner" style="display:inline-block; width:14px; height:14px; border:2px solid white; border-radius:50%; border-top-color:transparent; animation:spin 0.8s linear infinite; margin-right:8px; vertical-align:middle;"></span> Enviando cotizacion...`;
+      btn.innerHTML = `<span class="calc-loading-spinner" style="display:inline-block; width:14px; height:14px; border:2px solid white; border-radius:50%; border-top-color:transparent; animation:spin 0.8s linear infinite; margin-right:8px; vertical-align:middle;"></span> Abriendo WhatsApp...`;
 
       const isHospedaje = document.getElementById('chk-hospedaje').checked;
       const nightsInput = document.getElementById('input-nights');
       const nights = isHospedaje ? parseInt(nightsInput ? nightsInput.value : 2) : 0;
       const guestsHouse = parseInt(document.getElementById('input-guests').value);
       const guestsQuincho = parseInt(document.getElementById('input-quincho-guests').value);
-      const hasMerienda = document.getElementById('chk-merienda').checked;
+      const chkEntradaMerienda = document.getElementById('chk-merienda-entrada');
+      const chkCabalgatasMerienda = document.getElementById('chk-merienda');
+      const hasMerienda = (selectedOptions.entrada && chkEntradaMerienda && chkEntradaMerienda.checked) || (selectedOptions.cabalgatas && chkCabalgatasMerienda && chkCabalgatasMerienda.checked);
       
       const activeGuests = selectedOptions.quincho ? guestsQuincho : (isHospedaje ? guestsHouse : 10);
       const hospedajePrecioPersona = guestsHouse > 6 ? PRICING.hospedajePromo : PRICING.hospedajeBase;
@@ -1664,15 +1753,14 @@
       const soccerSubtotal = selectedOptions.soccer ? (activeGuests * PRICING.canchaPersona) : 0;
       const quinchoSubtotal = selectedOptions.quincho ? (guestsQuincho * quinchoPrecioPersona) : 0;
       const cabalgatasSubtotal = selectedOptions.cabalgatas ? (activeGuests * PRICING.cabalgatasPersona) : 0;
-      const meriendaSubtotal = ((selectedOptions.entrada || selectedOptions.cabalgatas) && hasMerienda) ? (activeGuests * PRICING.meriendaPersona) : 0;
+      const meriendaSubtotal = hasMerienda ? (activeGuests * PRICING.meriendaPersona) : 0;
       
       const total = hospedajeSubtotal + entradaSubtotal + soccerSubtotal + quinchoSubtotal + cabalgatasSubtotal + meriendaSubtotal;
 
       const messageText = `Hola Los Lapachos. Quisiera solicitar una reserva formal con el siguiente detalle de cotizacion:\n\n` +
                            `DATOS DE CONTACTO:\n` +
                            `• Nombre: ${name}\n` +
-                           `• Telefono: ${phone}\n` +
-                           `• Email: ${email}\n\n` +
+                           `• Telefono: ${phone}\n\n` +
                            `DETALLES DE LA ESTADIA:\n` +
                            `• Tipo de Grupo: Escapada Familiar / Amigos\n` +
                            `• Opcion: ${isHospedaje ? nights + ' noches en Casona (' + guestsHouse + ' pers @ $' + hospedajePrecioPersona.toLocaleString('es-AR') + '/noche)' : 'Visita de Campo (Dia unico)'}\n\n` +
@@ -1686,23 +1774,15 @@
                            `\nTOTAL ESTIMADO: $${total.toLocaleString('es-AR')} ARS\n\n` +
                            `Me confirmarian si tienen disponibilidad para congelar la reserva? Muchas gracias.`;
 
-      const whatsappUrl = `https://api.whatsapp.com/send?phone=543755680063&text=${encodeURIComponent(messageText)}`;
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=543755377600&text=${encodeURIComponent(messageText)}`;
       
       setTimeout(() => {
-        const toast = document.getElementById('email-toast');
-        document.getElementById('toast-email-text').innerText = `Se envio una copia de la reserva a ${email}.`;
-        toast.style.right = '20px';
-        
         closeModal();
         window.open(whatsappUrl, '_blank');
         
         btn.disabled = false;
         btn.innerHTML = originalText;
-        
-        setTimeout(() => {
-          toast.style.right = '-350px';
-        }, 4000);
-      }, 1500);
+      }, 1000);
     }
 
     function closeModal() {
