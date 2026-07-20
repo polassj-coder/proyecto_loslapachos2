@@ -1430,12 +1430,14 @@
         card.classList.add('selected');
         if (chk) chk.checked = true;
         if (id === 'quincho') document.getElementById('group-quincho-controls').style.display = 'block';
-        if (id === 'cabalgatas') document.getElementById('group-merienda').style.display = 'block';
+        if (selectedOptions.entrada || selectedOptions.cabalgatas) {
+          document.getElementById('group-merienda').style.display = 'block';
+        }
       } else {
         card.classList.remove('selected');
         if (chk) chk.checked = false;
         if (id === 'quincho') document.getElementById('group-quincho-controls').style.display = 'none';
-        if (id === 'cabalgatas') {
+        if (!selectedOptions.entrada && !selectedOptions.cabalgatas) {
           document.getElementById('group-merienda').style.display = 'none';
           document.getElementById('chk-merienda').checked = false;
         }
@@ -1487,7 +1489,7 @@
       const soccerSubtotal = selectedOptions.soccer ? (activeGuests * PRICING.canchaPersona) : 0;
       const quinchoSubtotal = selectedOptions.quincho ? (guestsQuincho * quinchoPrecioPersona) : 0;
       const cabalgatasSubtotal = selectedOptions.cabalgatas ? (activeGuests * PRICING.cabalgatasPersona) : 0;
-      const meriendaSubtotal = (selectedOptions.cabalgatas && hasMerienda) ? (activeGuests * PRICING.meriendaPersona) : 0;
+      const meriendaSubtotal = ((selectedOptions.entrada || selectedOptions.cabalgatas) && hasMerienda) ? (activeGuests * PRICING.meriendaPersona) : 0;
       
       const total = hospedajeSubtotal + entradaSubtotal + soccerSubtotal + quinchoSubtotal + cabalgatasSubtotal + meriendaSubtotal;
       
@@ -1503,7 +1505,7 @@
       document.getElementById('row-detail-soccer').style.display = selectedOptions.soccer ? 'flex' : 'none';
       document.getElementById('row-detail-quincho').style.display = selectedOptions.quincho ? 'flex' : 'none';
       document.getElementById('row-detail-cabalgatas').style.display = selectedOptions.cabalgatas ? 'flex' : 'none';
-      document.getElementById('row-detail-merienda').style.display = (selectedOptions.cabalgatas && hasMerienda) ? 'flex' : 'none';
+      document.getElementById('row-detail-merienda').style.display = ((selectedOptions.entrada || selectedOptions.cabalgatas) && hasMerienda) ? 'flex' : 'none';
       
       document.getElementById('total-price').innerText = `$${total.toLocaleString('es-AR')}`;
     }
@@ -1526,7 +1528,7 @@
       const soccerSubtotal = selectedOptions.soccer ? (activeGuests * PRICING.canchaPersona) : 0;
       const quinchoSubtotal = selectedOptions.quincho ? (guestsQuincho * quinchoPrecioPersona) : 0;
       const cabalgatasSubtotal = selectedOptions.cabalgatas ? (activeGuests * PRICING.cabalgatasPersona) : 0;
-      const meriendaSubtotal = (selectedOptions.cabalgatas && hasMerienda) ? (activeGuests * PRICING.meriendaPersona) : 0;
+      const meriendaSubtotal = ((selectedOptions.entrada || selectedOptions.cabalgatas) && hasMerienda) ? (activeGuests * PRICING.meriendaPersona) : 0;
       
       const total = hospedajeSubtotal + entradaSubtotal + soccerSubtotal + quinchoSubtotal + cabalgatasSubtotal + meriendaSubtotal;
       
@@ -1546,7 +1548,7 @@
       if (selectedOptions.cabalgatas) {
         servicesHtml += `<div class="modal-item-row"><span>Cabalgatas Guiadas (${activeGuests} pers)</span><span>$${cabalgatasSubtotal.toLocaleString('es-AR')}</span></div>`;
       }
-      if (selectedOptions.cabalgatas && hasMerienda) {
+      if ((selectedOptions.entrada || selectedOptions.cabalgatas) && hasMerienda) {
         servicesHtml += `<div class="modal-item-row"><span>Merienda Regional (${activeGuests} pers)</span><span>$${meriendaSubtotal.toLocaleString('es-AR')}</span></div>`;
       }
       
@@ -1644,7 +1646,7 @@
       const soccerSubtotal = selectedOptions.soccer ? (activeGuests * PRICING.canchaPersona) : 0;
       const quinchoSubtotal = selectedOptions.quincho ? (guestsQuincho * quinchoPrecioPersona) : 0;
       const cabalgatasSubtotal = selectedOptions.cabalgatas ? (activeGuests * PRICING.cabalgatasPersona) : 0;
-      const meriendaSubtotal = (selectedOptions.cabalgatas && hasMerienda) ? (activeGuests * PRICING.meriendaPersona) : 0;
+      const meriendaSubtotal = ((selectedOptions.entrada || selectedOptions.cabalgatas) && hasMerienda) ? (activeGuests * PRICING.meriendaPersona) : 0;
       
       const total = hospedajeSubtotal + entradaSubtotal + soccerSubtotal + quinchoSubtotal + cabalgatasSubtotal + meriendaSubtotal;
 
@@ -1662,7 +1664,7 @@
                            (selectedOptions.quincho ? `  - Alquiler de Quincho (${guestsQuincho} pers @ $${quinchoPrecioPersona.toLocaleString('es-AR')}): $${quinchoSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
                            (selectedOptions.soccer ? `  - Canchas de Futbol 7 (${activeGuests} pers): $${soccerSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
                            (selectedOptions.cabalgatas ? `  - Cabalgatas Guiadas (${activeGuests} pers): $${cabalgatasSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
-                           ((selectedOptions.cabalgatas && hasMerienda) ? `  - Merienda Regional (${activeGuests} pers): $${meriendaSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
+                           (((selectedOptions.entrada || selectedOptions.cabalgatas) && hasMerienda) ? `  - Merienda Regional (${activeGuests} pers): $${meriendaSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
                            `\nTOTAL ESTIMADO: $${total.toLocaleString('es-AR')} ARS\n\n` +
                            `Me confirmarian si tienen disponibilidad para congelar la reserva? Muchas gracias.`;
 
