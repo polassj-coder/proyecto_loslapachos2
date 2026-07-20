@@ -1207,7 +1207,8 @@
 
             <div class="services-select" style="gap:12px;">
               <!-- Entrada General -->
-              <div class="service-option-card" id="opt-entrada" onclick="toggleOption('entrada', 4000)" style="padding:1.1rem 1.3rem; border-radius:12px;">
+              <!-- Entrada General -->
+              <div class="service-option-card" id="opt-entrada" onclick="toggleOption('entrada', 3000)" style="padding:1.1rem 1.3rem; border-radius:12px;">
                 <div class="option-details">
                   <input type="checkbox" id="chk-entrada" class="option-checkbox" style="pointer-events:none; width:18px; height:18px;">
                   <div>
@@ -1216,6 +1217,14 @@
                   </div>
                 </div>
                 <span class="option-price" id="price-label-entrada" style="font-weight:700; font-size:0.95rem;">+$3.000 ARS / pers</span>
+              </div>
+
+              <!-- Opcion Adicional de Merienda para Entrada General -->
+              <div class="input-group" id="group-merienda-entrada" style="display:none; padding:0.9rem 1.2rem; background:rgba(200, 162, 74, 0.2); border:1px solid #C8A24A; border-radius:10px; margin-top:-0.3rem; margin-bottom:0.5rem;">
+                <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-weight:600; font-size:0.88rem; color:#FFFFF7;">
+                  <input type="checkbox" id="chk-merienda-entrada" onchange="calculateTotal()" style="width:17px; height:17px; cursor:pointer; accent-color:var(--color-accent);">
+                  <span>Agregar Merienda Regional de Campo (+ $3.000 ARS / pers)</span>
+                </label>
               </div>
 
               <!-- Alquiler de Quincho -->
@@ -1262,7 +1271,7 @@
                 <span class="option-price" id="price-label-cabalgatas" style="font-weight:700; font-size:0.95rem;">+$7.000 ARS / pers</span>
               </div>
 
-              <!-- Opcion Adicional de Merienda Regional (vinculada a Cabalgatas o libre) -->
+              <!-- Opcion Adicional de Merienda Regional para Cabalgatas -->
               <div class="input-group" id="group-merienda" style="display:none; padding:0.9rem 1.2rem; background:rgba(200, 162, 74, 0.2); border:1px solid #C8A24A; border-radius:10px; margin-top:-0.3rem; margin-bottom:0.5rem;">
                 <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-weight:600; font-size:0.88rem; color:#FFFFF7;">
                   <input type="checkbox" id="chk-merienda" onchange="calculateTotal()" style="width:17px; height:17px; cursor:pointer; accent-color:var(--color-accent);">
@@ -1394,20 +1403,7 @@
     </div>
   </div>
 
-  <!-- VENTANA MODAL PREGUNTA MERIENDA -->
-  <div class="modal" id="merienda-modal" style="z-index: 2000;">
-    <div class="modal-content" style="max-width: 480px; padding: 2.5rem; text-align: center; border-radius: 24px; background: #172614; border: 1.5px solid #C8A24A;">
-      <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">☕</div>
-      <h3 style="color: #C8A24A; font-family: var(--font-body); font-size: 1.35rem; margin-bottom: 0.8rem; font-weight: 700;">¿Deseás agregar Merienda Regional?</h3>
-      <p style="color: #FFFFF7; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.8rem;">
-        Podés sumar a tu reserva una deliciosa <strong>Merienda Regional de Campo</strong> por <strong>+$3.000 ARS por persona</strong> (chipá calentito, infusiones campesinas y delicias artesanales).
-      </p>
-      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-        <button onclick="confirmMeriendaChoice(true)" class="btn-cta" style="padding: 0.8rem 1.4rem; font-size: 0.9rem; cursor: pointer;">Sí, agregar merienda (+$3.000)</button>
-        <button onclick="confirmMeriendaChoice(false)" style="padding: 0.8rem 1.4rem; font-size: 0.9rem; background: rgba(255,255,247,0.12); border: 1px solid rgba(255,255,247,0.3); color: #FFFFF7; border-radius: 50px; cursor: pointer; font-weight: 600;">No, gracias</button>
-      </div>
-    </div>
-  </div>
+
 
   <script>
     // TARIFAS OFICIALES Y ESTIMADAS
@@ -1436,19 +1432,6 @@
       calculateTotal();
     }
 
-    function showMeriendaPrompt() {
-      document.getElementById('group-merienda').style.display = 'block';
-      const modal = document.getElementById('merienda-modal');
-      if (modal) modal.classList.add('active');
-    }
-
-    function confirmMeriendaChoice(add) {
-      document.getElementById('chk-merienda').checked = add;
-      const modal = document.getElementById('merienda-modal');
-      if (modal) modal.classList.remove('active');
-      calculateTotal();
-    }
-
     function toggleOption(id, price) {
       selectedOptions[id] = !selectedOptions[id];
       const card = document.getElementById(`opt-${id}`);
@@ -1458,14 +1441,17 @@
         card.classList.add('selected');
         if (chk) chk.checked = true;
         if (id === 'quincho') document.getElementById('group-quincho-controls').style.display = 'block';
-        if (id === 'entrada' || id === 'cabalgatas') {
-          showMeriendaPrompt();
-        }
+        if (id === 'entrada') document.getElementById('group-merienda-entrada').style.display = 'block';
+        if (id === 'cabalgatas') document.getElementById('group-merienda').style.display = 'block';
       } else {
         card.classList.remove('selected');
         if (chk) chk.checked = false;
         if (id === 'quincho') document.getElementById('group-quincho-controls').style.display = 'none';
-        if (!selectedOptions.entrada && !selectedOptions.cabalgatas) {
+        if (id === 'entrada') {
+          document.getElementById('group-merienda-entrada').style.display = 'none';
+          document.getElementById('chk-merienda-entrada').checked = false;
+        }
+        if (id === 'cabalgatas') {
           document.getElementById('group-merienda').style.display = 'none';
           document.getElementById('chk-merienda').checked = false;
         }
@@ -1480,7 +1466,9 @@
       const nights = isHospedaje ? parseInt(nightsInput ? nightsInput.value : 2) : 0;
       
       const guestsQuincho = parseInt(document.getElementById('input-quincho-guests').value);
-      const hasMerienda = document.getElementById('chk-merienda').checked;
+      const chkEntradaMerienda = document.getElementById('chk-merienda-entrada');
+      const chkCabalgatasMerienda = document.getElementById('chk-merienda');
+      const hasMerienda = (selectedOptions.entrada && chkEntradaMerienda && chkEntradaMerienda.checked) || (selectedOptions.cabalgatas && chkCabalgatasMerienda && chkCabalgatasMerienda.checked);
 
       document.getElementById('val-nights').innerText = nights === 1 ? '1 Noche' : `${nights} Noches`;
       document.getElementById('val-guests').innerText = `${guestsHouse} Personas`;
@@ -1517,7 +1505,7 @@
       const soccerSubtotal = selectedOptions.soccer ? (activeGuests * PRICING.canchaPersona) : 0;
       const quinchoSubtotal = selectedOptions.quincho ? (guestsQuincho * quinchoPrecioPersona) : 0;
       const cabalgatasSubtotal = selectedOptions.cabalgatas ? (activeGuests * PRICING.cabalgatasPersona) : 0;
-      const meriendaSubtotal = ((selectedOptions.entrada || selectedOptions.cabalgatas) && hasMerienda) ? (activeGuests * PRICING.meriendaPersona) : 0;
+      const meriendaSubtotal = hasMerienda ? (activeGuests * PRICING.meriendaPersona) : 0;
       
       const total = hospedajeSubtotal + entradaSubtotal + soccerSubtotal + quinchoSubtotal + cabalgatasSubtotal + meriendaSubtotal;
       
@@ -1533,7 +1521,7 @@
       document.getElementById('row-detail-soccer').style.display = selectedOptions.soccer ? 'flex' : 'none';
       document.getElementById('row-detail-quincho').style.display = selectedOptions.quincho ? 'flex' : 'none';
       document.getElementById('row-detail-cabalgatas').style.display = selectedOptions.cabalgatas ? 'flex' : 'none';
-      document.getElementById('row-detail-merienda').style.display = ((selectedOptions.entrada || selectedOptions.cabalgatas) && hasMerienda) ? 'flex' : 'none';
+      document.getElementById('row-detail-merienda').style.display = hasMerienda ? 'flex' : 'none';
       
       document.getElementById('total-price').innerText = `$${total.toLocaleString('es-AR')}`;
     }
@@ -1545,7 +1533,9 @@
       const nights = isHospedaje ? parseInt(nightsInput ? nightsInput.value : 2) : 0;
       const guestsHouse = parseInt(document.getElementById('input-guests').value);
       const guestsQuincho = parseInt(document.getElementById('input-quincho-guests').value);
-      const hasMerienda = document.getElementById('chk-merienda').checked;
+      const chkEntradaMerienda = document.getElementById('chk-merienda-entrada');
+      const chkCabalgatasMerienda = document.getElementById('chk-merienda');
+      const hasMerienda = (selectedOptions.entrada && chkEntradaMerienda && chkEntradaMerienda.checked) || (selectedOptions.cabalgatas && chkCabalgatasMerienda && chkCabalgatasMerienda.checked);
       
       const activeGuests = selectedOptions.quincho ? guestsQuincho : (isHospedaje ? guestsHouse : 10);
       const hospedajePrecioPersona = guestsHouse > 6 ? PRICING.hospedajePromo : PRICING.hospedajeBase;
@@ -1556,7 +1546,7 @@
       const soccerSubtotal = selectedOptions.soccer ? (activeGuests * PRICING.canchaPersona) : 0;
       const quinchoSubtotal = selectedOptions.quincho ? (guestsQuincho * quinchoPrecioPersona) : 0;
       const cabalgatasSubtotal = selectedOptions.cabalgatas ? (activeGuests * PRICING.cabalgatasPersona) : 0;
-      const meriendaSubtotal = ((selectedOptions.entrada || selectedOptions.cabalgatas) && hasMerienda) ? (activeGuests * PRICING.meriendaPersona) : 0;
+      const meriendaSubtotal = hasMerienda ? (activeGuests * PRICING.meriendaPersona) : 0;
       
       const total = hospedajeSubtotal + entradaSubtotal + soccerSubtotal + quinchoSubtotal + cabalgatasSubtotal + meriendaSubtotal;
       
@@ -1576,7 +1566,7 @@
       if (selectedOptions.cabalgatas) {
         servicesHtml += `<div class="modal-item-row"><span>Cabalgatas Guiadas (${activeGuests} pers)</span><span>$${cabalgatasSubtotal.toLocaleString('es-AR')}</span></div>`;
       }
-      if ((selectedOptions.entrada || selectedOptions.cabalgatas) && hasMerienda) {
+      if (hasMerienda) {
         servicesHtml += `<div class="modal-item-row"><span>Merienda Regional (${activeGuests} pers)</span><span>$${meriendaSubtotal.toLocaleString('es-AR')}</span></div>`;
       }
       
@@ -1692,7 +1682,7 @@
                            (selectedOptions.quincho ? `  - Alquiler de Quincho (${guestsQuincho} pers @ $${quinchoPrecioPersona.toLocaleString('es-AR')}): $${quinchoSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
                            (selectedOptions.soccer ? `  - Canchas de Futbol 7 (${activeGuests} pers): $${soccerSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
                            (selectedOptions.cabalgatas ? `  - Cabalgatas Guiadas (${activeGuests} pers): $${cabalgatasSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
-                           (((selectedOptions.entrada || selectedOptions.cabalgatas) && hasMerienda) ? `  - Merienda Regional (${activeGuests} pers): $${meriendaSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
+                           (hasMerienda ? `  - Merienda Regional (${activeGuests} pers): $${meriendaSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
                            `\nTOTAL ESTIMADO: $${total.toLocaleString('es-AR')} ARS\n\n` +
                            `Me confirmarian si tienen disponibilidad para congelar la reserva? Muchas gracias.`;
 
