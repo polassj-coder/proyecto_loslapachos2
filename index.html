@@ -1256,10 +1256,10 @@
                 </svg>
                 <span>Hospedaje Casona</span>
               </div>
-              <input type="checkbox" id="chk-hospedaje" checked onchange="toggleHospedaje()" style="width:20px; height:20px; cursor:pointer; accent-color:var(--color-accent);">
+              <input type="checkbox" id="chk-hospedaje" onchange="toggleHospedaje()" style="width:20px; height:20px; cursor:pointer; accent-color:var(--color-accent);">
             </div>
             
-            <div id="hospedaje-controls">
+            <div id="hospedaje-controls" style="display:none;">
               <div class="input-label-row">
                 <span class="input-label">Cantidad de Noches</span>
                 <span class="input-value" id="val-nights">2 Noches</span>
@@ -1320,9 +1320,9 @@
               </div>
 
               <!-- Alquiler de Quincho -->
-              <div class="service-option-card selected" id="opt-quincho" onclick="toggleOption('quincho', 5000)" style="padding:1.1rem 1.3rem; border-radius:12px;">
+              <div class="service-option-card" id="opt-quincho" onclick="toggleOption('quincho', 5000)" style="padding:1.1rem 1.3rem; border-radius:12px;">
                 <div class="option-details">
-                  <input type="checkbox" id="chk-quincho" class="option-checkbox" checked style="pointer-events:none; width:18px; height:18px;">
+                  <input type="checkbox" id="chk-quincho" class="option-checkbox" style="pointer-events:none; width:18px; height:18px;">
                   <div>
                     <span class="option-title" style="font-size:1.02rem; font-weight:700;">Alquiler de Quincho Principal (Parrilla y Horno de Barro)</span>
                     <br><span class="badge-tag tag-success" style="margin-top:4px;">Acceso al predio incluido</span>
@@ -1332,7 +1332,7 @@
               </div>
 
               <!-- Controles de Personas en Quincho -->
-              <div class="input-group" id="group-quincho-controls" style="padding:1.2rem; background: rgba(39, 55, 29, 0.5); border:1px solid rgba(200, 162, 74, 0.3); border-radius:10px; margin-top:-0.3rem; margin-bottom:0.5rem; color:#FFFFF7;">
+              <div class="input-group" id="group-quincho-controls" style="display:none; padding:1.2rem; background: rgba(39, 55, 29, 0.5); border:1px solid rgba(200, 162, 74, 0.3); border-radius:10px; margin-top:-0.3rem; margin-bottom:0.5rem; color:#FFFFF7;">
                 <div class="input-label-row">
                   <span class="input-label" style="font-size:0.9rem; color:#FFFFF7;">Personas asistiendo al Quincho</span>
                   <span class="input-value" id="val-quincho-guests" style="font-size:0.95rem; color:var(--color-accent);">20 Personas</span>
@@ -1509,7 +1509,7 @@
     // OPCIONES SELECCIONADAS
     let selectedOptions = {
       entrada: false,
-      quincho: true,
+      quincho: false,
       soccer: false,
       cabalgatas: false
     };
