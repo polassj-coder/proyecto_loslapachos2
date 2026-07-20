@@ -1170,13 +1170,13 @@
                 <span class="input-label">Personas Hospedadas en Casona</span>
                 <span class="input-value" id="val-guests">10 Personas</span>
               </div>
-              <input type="range" id="input-guests" min="1" max="50" value="10" class="slider" oninput="calculateTotal()" style="width:100%; cursor:pointer; position:relative; z-index:10;">
+              <input type="range" id="input-guests" min="1" max="15" value="10" class="slider" oninput="calculateTotal()" style="width:100%; cursor:pointer; position:relative; z-index:10;">
             </div>
           </div>
 
           <!-- Servicios Adicionales en Formato Card -->
           <div class="input-group" style="margin-top: 1.5rem;">
-            <span class="input-label" style="font-size:1.1rem; font-weight:700;">Servicios y Actividades Adicionales</span>
+            <span class="input-label" style="font-size:1.15rem; font-weight:800; color:var(--color-primary); letter-spacing:-0.2px;">Nuestros Servicios y Actividades</span>
             
             <!-- Banner Aclaratorio de Politica de Ingreso -->
             <div class="info-policy-banner" style="background: rgba(45, 61, 38, 0.05); border: 1px solid rgba(45, 61, 38, 0.15); border-radius: 12px; padding: 1.2rem 1.4rem; margin: 0.8rem 0 1.4rem; color: var(--color-dark);">
@@ -1193,33 +1193,33 @@
               </div>
             </div>
 
-            <div class="services-select">
+            <div class="services-select" style="gap:12px;">
               <!-- Entrada General -->
-              <div class="service-option-card" id="opt-entrada" onclick="toggleOption('entrada', 4000)">
+              <div class="service-option-card" id="opt-entrada" onclick="toggleOption('entrada', 4000)" style="padding:1.1rem 1.3rem; border-radius:12px;">
                 <div class="option-details">
-                  <input type="checkbox" id="chk-entrada" class="option-checkbox" style="pointer-events:none;">
+                  <input type="checkbox" id="chk-entrada" class="option-checkbox" style="pointer-events:none; width:18px; height:18px;">
                   <div>
-                    <span class="option-title">Entrada General (Acceso al Predio y Senderos)</span>
-                    <br><span class="badge-tag tag-warning">Incluye recorrido libre por senderos de monte nativo</span>
+                    <span class="option-title" style="font-size:1.02rem; font-weight:700;">Entrada General (Acceso al Predio y Senderos)</span>
+                    <br><span class="badge-tag tag-warning" style="margin-top:4px;">Incluye recorrido libre por senderos de monte nativo</span>
                   </div>
                 </div>
-                <span class="option-price" id="price-label-entrada">+$3.000 ARS / pers</span>
+                <span class="option-price" id="price-label-entrada" style="font-weight:700; font-size:0.95rem;">+$3.000 ARS / pers</span>
               </div>
 
               <!-- Alquiler de Quincho -->
-              <div class="service-option-card selected" id="opt-quincho" onclick="toggleOption('quincho', 5000)">
+              <div class="service-option-card selected" id="opt-quincho" onclick="toggleOption('quincho', 5000)" style="padding:1.1rem 1.3rem; border-radius:12px;">
                 <div class="option-details">
-                  <input type="checkbox" id="chk-quincho" class="option-checkbox" checked style="pointer-events:none;">
+                  <input type="checkbox" id="chk-quincho" class="option-checkbox" checked style="pointer-events:none; width:18px; height:18px;">
                   <div>
-                    <span class="option-title">Alquiler de Quincho Principal (Parrilla y Horno de Barro)</span>
-                    <br><span class="badge-tag tag-success">Acceso al predio incluido</span>
+                    <span class="option-title" style="font-size:1.02rem; font-weight:700;">Alquiler de Quincho Principal (Parrilla y Horno de Barro)</span>
+                    <br><span class="badge-tag tag-success" style="margin-top:4px;">Acceso al predio incluido</span>
                   </div>
                 </div>
-                <span class="option-price" id="price-label-quincho">+$5.000 ARS / pers</span>
+                <span class="option-price" id="price-label-quincho" style="font-weight:700; font-size:0.95rem;">+$5.000 ARS / pers</span>
               </div>
 
               <!-- Controles de Personas en Quincho -->
-              <div class="input-group" id="group-quincho-controls" style="padding:1.2rem; background:var(--color-background); border:1px solid rgba(18,30,21,0.1); border-radius:10px; margin-top:-0.5rem; margin-bottom:0.5rem;">
+              <div class="input-group" id="group-quincho-controls" style="padding:1.2rem; background:var(--color-background); border:1px solid rgba(18,30,21,0.1); border-radius:10px; margin-top:-0.3rem; margin-bottom:0.5rem;">
                 <div class="input-label-row">
                   <span class="input-label" style="font-size:0.9rem;">Personas asistiendo al Quincho</span>
                   <span class="input-value" id="val-quincho-guests" style="font-size:0.95rem;">20 Personas</span>
@@ -1229,30 +1229,29 @@
               </div>
 
               <!-- Canchas de Fútbol 7 -->
-              <div class="service-option-card" id="opt-soccer" onclick="toggleOption('soccer', 2000)">
+              <div class="service-option-card" id="opt-soccer" onclick="toggleOption('soccer', 2000)" style="padding:1.1rem 1.3rem; border-radius:12px;">
                 <div class="option-details">
-                  <input type="checkbox" id="chk-soccer" class="option-checkbox" style="pointer-events:none;">
+                  <input type="checkbox" id="chk-soccer" class="option-checkbox" style="pointer-events:none; width:18px; height:18px;">
                   <div>
-                    <span class="option-title">Alquiler de Cancha de Futbol 7 (Cesped Natural)</span>
+                    <span class="option-title" style="font-size:1.02rem; font-weight:700;">Alquiler de Cancha de Futbol 7 (Cesped Natural)</span>
                   </div>
                 </div>
-                <span class="option-price">+$2.000 ARS / pers</span>
+                <span class="option-price" style="font-weight:700; font-size:0.95rem;">+$2.000 ARS / pers</span>
               </div>
 
               <!-- Cabalgatas -->
-              <div class="service-option-card" id="opt-cabalgatas" onclick="toggleOption('cabalgatas', 7000)">
+              <div class="service-option-card" id="opt-cabalgatas" onclick="toggleOption('cabalgatas', 7000)" style="padding:1.1rem 1.3rem; border-radius:12px;">
                 <div class="option-details">
-                  <input type="checkbox" id="chk-cabalgatas" class="option-checkbox" style="pointer-events:none;">
+                  <input type="checkbox" id="chk-cabalgatas" class="option-checkbox" style="pointer-events:none; width:18px; height:18px;">
                   <div>
-                    <span class="option-title">Paseo de Cabalgatas Guiadas</span>
-                    <br><span class="badge-tag tag-info">Paseo guiado a caballo por paisajes unicos</span>
+                    <span class="option-title" style="font-size:1.02rem; font-weight:700;">Paseo de Cabalgatas Guiadas</span>
                   </div>
                 </div>
-                <span class="option-price" id="price-label-cabalgatas">+$7.000 ARS / pers</span>
+                <span class="option-price" id="price-label-cabalgatas" style="font-weight:700; font-size:0.95rem;">+$7.000 ARS / pers</span>
               </div>
 
               <!-- Opcion Adicional de Merienda Regional (vinculada a Cabalgatas o libre) -->
-              <div class="input-group" id="group-merienda" style="display:none; padding:0.9rem 1.2rem; background:rgba(224, 169, 109, 0.12); border:1px solid rgba(224, 169, 109, 0.3); border-radius:10px; margin-top:-0.5rem; margin-bottom:0.5rem;">
+              <div class="input-group" id="group-merienda" style="display:none; padding:0.9rem 1.2rem; background:rgba(224, 169, 109, 0.12); border:1px solid rgba(224, 169, 109, 0.3); border-radius:10px; margin-top:-0.3rem; margin-bottom:0.5rem;">
                 <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-weight:600; font-size:0.88rem; color:var(--color-dark);">
                   <input type="checkbox" id="chk-merienda" onchange="calculateTotal()" style="width:17px; height:17px; cursor:pointer; accent-color:var(--color-primary);">
                   <span>Agregar Merienda Regional de Campo (+ $3.000 ARS / pers)</span>
