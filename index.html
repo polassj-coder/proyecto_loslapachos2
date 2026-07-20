@@ -10,22 +10,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
   <style>
-    /* VARIABLES CSS DEFINIDAS POR LA SKILL BRAND-IDENTITY */
+    /* VARIABLES CSS DEFINIDAS POR LA PALETA OFICIAL LOS LAPACHOS */
     :root {
-      --color-primary: #2D3D26; /* Verde Musgo */
-      --color-primary-light: #4A633F;
-      --color-dark: #121E15; /* Verde Bosque Profundo */
-      --color-background: #FFFFFF;
-      --color-soft-bg: #F8F9FA; /* Blanco Roto */
-      --color-soft-bg: #F8F9FA; /* Blanco Roto */
-      --color-text-dark: #1C271E;
-      --color-text-light: #FFFFFF;
-      --color-accent: #E0A96D; /* Dorado sutil para detalles premium */
+      --color-primary: #27371D; /* Verde Bosque Profundo */
+      --color-secondary: #3C4F2D; /* Verde Oliva Oscuro */
+      --color-primary-light: #3C4F2D;
+      --color-dark: #0D120B; /* Negro Neutral */
+      --color-background: #FFFFF7; /* Blanco Warm */
+      --color-soft-bg: #F3F4EE; /* Blanco Soft / Hueso */
+      --color-text-dark: #0D120B;
+      --color-text-light: #FFFFF7;
+      --color-accent: #C8A24A; /* Dorado Cálido */
+      --color-earth: #6D5135; /* Marrón Tierra */
       --font-headings: 'Playfair Display', serif;
       --font-body: 'Inter', sans-serif;
-      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-      --shadow-md: 0 10px 15px -3px rgba(18, 30, 21, 0.08), 0 4px 6px -2px rgba(18, 30, 21, 0.03);
-      --shadow-lg: 0 20px 25px -5px rgba(18, 30, 21, 0.12), 0 10px 10px -5px rgba(18, 30, 21, 0.04);
+      --shadow-sm: 0 4px 6px -1px rgba(13, 18, 11, 0.06), 0 2px 4px -1px rgba(13, 18, 11, 0.03);
+      --shadow-md: 0 10px 15px -3px rgba(13, 18, 11, 0.1), 0 4px 6px -2px rgba(13, 18, 11, 0.04);
+      --shadow-lg: 0 20px 25px -5px rgba(13, 18, 11, 0.16), 0 10px 10px -5px rgba(13, 18, 11, 0.06);
       --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -719,19 +720,19 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.03);
     }
     .tag-success {
-      background: linear-gradient(135deg, rgba(45, 61, 38, 0.12), rgba(74, 99, 63, 0.18));
-      color: #2D3D26;
-      border: 1px solid rgba(45, 61, 38, 0.2);
+      background: rgba(39, 55, 29, 0.12);
+      color: #27371D;
+      border: 1px solid rgba(39, 55, 29, 0.25);
     }
     .tag-info {
-      background: linear-gradient(135deg, rgba(224, 169, 109, 0.18), rgba(212, 147, 78, 0.22));
-      color: #7A4E1B;
-      border: 1px solid rgba(224, 169, 109, 0.35);
+      background: rgba(200, 162, 74, 0.16);
+      color: #6D5135;
+      border: 1px solid rgba(200, 162, 74, 0.4);
     }
     .tag-warning {
-      background: rgba(18, 30, 21, 0.06);
+      background: rgba(109, 81, 53, 0.1);
       color: var(--color-dark);
-      border: 1px solid rgba(18, 30, 21, 0.12);
+      border: 1px solid rgba(109, 81, 53, 0.25);
     }
 
     .calc-results {
@@ -1032,10 +1033,10 @@
   <header>
     <div class="logo-container">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 65" width="165" height="54">
-        <rect width="200" height="65" rx="8" fill="#2D3D26" />
-        <path d="M 35 48 C 32 48, 31 32, 30 27 C 18 27, 14 18, 22 12 C 27 5, 43 5, 48 12 C 56 18, 52 27, 40 27 C 39 32, 38 48, 35 48 Z" fill="#121E15" />
-        <text x="125" y="32" font-family="'Inter', sans-serif" font-weight="700" font-size="14" fill="#FFFFFF" text-anchor="middle">Los LAPACHOS</text>
-        <text x="125" y="47" font-family="'Inter', sans-serif" font-weight="500" font-size="5.5" fill="#E0A96D" text-anchor="middle" letter-spacing="1">CENTRO RECREATIVO</text>
+        <rect width="200" height="65" rx="8" fill="#27371D" />
+        <path d="M 35 48 C 32 48, 31 32, 30 27 C 18 27, 14 18, 22 12 C 27 5, 43 5, 48 12 C 56 18, 52 27, 40 27 C 39 32, 38 48, 35 48 Z" fill="#0D120B" />
+        <text x="125" y="32" font-family="'Inter', sans-serif" font-weight="700" font-size="14" fill="#FFFFF7" text-anchor="middle">Los LAPACHOS</text>
+        <text x="125" y="47" font-family="'Inter', sans-serif" font-weight="500" font-size="5.5" fill="#C8A24A" text-anchor="middle" letter-spacing="1">CENTRO RECREATIVO</text>
       </svg>
     </div>
     <ul class="nav-links">
@@ -1313,10 +1314,10 @@
   <footer>
     <div class="footer-logo">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 65" width="130" height="42">
-        <rect width="200" height="65" rx="8" fill="#121E15" />
-        <path d="M 35 48 C 32 48, 31 32, 30 27 C 18 27, 14 18, 22 12 C 27 5, 43 5, 48 12 C 56 18, 52 27, 40 27 C 39 32, 38 48, 35 48 Z" fill="#2D3D26" />
-        <text x="125" y="32" font-family="'Inter', sans-serif" font-weight="700" font-size="14" fill="#FFFFFF" text-anchor="middle">Los LAPACHOS</text>
-        <text x="125" y="47" font-family="'Inter', sans-serif" font-weight="500" font-size="5.5" fill="#E0A96D" text-anchor="middle" letter-spacing="1">CENTRO RECREATIVO</text>
+        <rect width="200" height="65" rx="8" fill="#0D120B" />
+        <path d="M 35 48 C 32 48, 31 32, 30 27 C 18 27, 14 18, 22 12 C 27 5, 43 5, 48 12 C 56 18, 52 27, 40 27 C 39 32, 38 48, 35 48 Z" fill="#27371D" />
+        <text x="125" y="32" font-family="'Inter', sans-serif" font-weight="700" font-size="14" fill="#FFFFF7" text-anchor="middle">Los LAPACHOS</text>
+        <text x="125" y="47" font-family="'Inter', sans-serif" font-weight="500" font-size="5.5" fill="#C8A24A" text-anchor="middle" letter-spacing="1">CENTRO RECREATIVO</text>
       </svg>
     </div>
     <ul class="footer-links">
