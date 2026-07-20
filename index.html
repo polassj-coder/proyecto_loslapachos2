@@ -707,20 +707,31 @@
       pointer-events: none;
     }
     .badge-tag {
-      font-size: 0.75rem;
+      font-size: 0.76rem;
       font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 6px;
-      display: inline-block;
-      margin-top: 4px;
+      padding: 4px 10px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 6px;
+      letter-spacing: 0.2px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
     }
     .tag-success {
-      background: rgba(45, 61, 38, 0.15);
-      color: var(--color-primary);
+      background: linear-gradient(135deg, rgba(45, 61, 38, 0.12), rgba(74, 99, 63, 0.18));
+      color: #2D3D26;
+      border: 1px solid rgba(45, 61, 38, 0.2);
     }
-    .tag-alert {
-      background: rgba(217, 83, 79, 0.15);
-      color: #C9302C;
+    .tag-info {
+      background: linear-gradient(135deg, rgba(224, 169, 109, 0.18), rgba(212, 147, 78, 0.22));
+      color: #7A4E1B;
+      border: 1px solid rgba(224, 169, 109, 0.35);
+    }
+    .tag-warning {
+      background: rgba(18, 30, 21, 0.06);
+      color: var(--color-dark);
+      border: 1px solid rgba(18, 30, 21, 0.12);
     }
 
     .calc-results {
@@ -1152,7 +1163,7 @@
               <input type="range" id="input-nights" min="1" max="14" value="2" class="slider" oninput="calculateTotal()" style="margin-bottom: 0.8rem;">
               <span style="font-size:0.82rem; color: var(--color-dark); margin-bottom:1rem; display:block;">
                 Tarifa: <strong>$95.000 ARS / noche</strong> (Casona completa para hasta 10 personas).<br>
-                <span class="badge-tag tag-success" style="margin-top:5px;">✓ NO requiere abonar Entrada General</span>
+                <span class="badge-tag tag-success" style="margin-top:5px;">🎁 ¡Acceso Libre al Predio Incluido! ($0 Entrada General)</span>
               </span>
             </div>
 
@@ -1160,20 +1171,29 @@
               <span class="input-label">Cantidad de Personas</span>
               <span class="input-value" id="val-guests">10 Personas</span>
             </div>
-            <input type="range" id="input-guests" min="1" max="30" value="10" class="slider" oninput="calculateTotal()">
+            <input type="range" id="input-guests" min="1" max="50" value="10" class="slider" oninput="calculateTotal()">
           </div>
 
           <!-- Servicios Adicionales en Formato Card -->
           <div class="input-group" style="margin-top: 1.5rem;">
             <span class="input-label" style="font-size:1.1rem; font-weight:700;">Servicios y Actividades Adicionales</span>
             
-            <!-- Banner Aclaratorio de Políticas de Entrada -->
-            <div class="info-policy-banner" style="background: rgba(224, 169, 109, 0.15); border-left: 4px solid var(--color-accent); border-radius: 10px; padding: 1rem 1.2rem; margin: 0.8rem 0 1.2rem; font-size: 0.88rem; color: var(--color-dark);">
-              <strong style="color: var(--color-dark); display: block; margin-bottom: 4px; font-size:0.95rem;">💡 Política de Ingreso y Entrada General:</strong>
-              <ul style="margin-left: 1.2rem; margin-top: 4px; line-height: 1.5; opacity: 0.95;">
-                <li><strong>NO pagan Entrada General:</strong> Quienes alquilen el <strong>Quincho</strong>, la <strong>Casona Colonial</strong> o las <strong>Canchas de Fútbol</strong>.</li>
-                <li><strong>SÍ requieren Entrada General:</strong> Quienes asistan únicamente a realizar <strong>Cabalgatas</strong> o <strong>Senderismo</strong>.</li>
-              </ul>
+            <!-- Banner Aclaratorio & Promocional de Ingreso -->
+            <div class="info-policy-banner" style="background: linear-gradient(135deg, rgba(45, 61, 38, 0.06), rgba(224, 169, 109, 0.16)); border: 1.5px solid rgba(45, 61, 38, 0.18); border-radius: 14px; padding: 1.2rem 1.4rem; margin: 0.8rem 0 1.4rem; color: var(--color-dark); box-shadow: var(--shadow-sm);">
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+                <span style="font-size:1.4rem;">🌟</span>
+                <strong style="color: var(--color-primary); font-size:1.02rem; font-family:var(--font-headings);">Beneficios de Acceso & Políticas del Predio:</strong>
+              </div>
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top:8px; font-size: 0.86rem; line-height: 1.45;">
+                <div style="background:rgba(255,255,255,0.75); padding:10px 12px; border-radius:10px; border-left:4px solid #2D3D26;">
+                  <strong style="color:#2D3D26; display:block; margin-bottom:2px;">🎉 Acceso Libre al Predio ($0 Entrada)</strong>
+                  <span>Al alquilar el <strong>Quincho</strong>, la <strong>Casona Colonial</strong> o las <strong>Canchas de Fútbol</strong>, el ingreso al predio está <strong>100% bonificado</strong>.</span>
+                </div>
+                <div style="background:rgba(255,255,255,0.75); padding:10px 12px; border-radius:10px; border-left:4px solid #E0A96D;">
+                  <strong style="color:#7A4E1B; display:block; margin-bottom:2px;">🌿 Actividades de Naturaleza</strong>
+                  <span>Para realizar únicamente <strong>Cabalgatas ($7.000)</strong> o <strong>Senderismo ($5.000)</strong> en visitas de campo de día, se abona la Entrada General.</span>
+                </div>
+              </div>
             </div>
 
             <div class="services-select">
@@ -1183,22 +1203,22 @@
                   <input type="checkbox" id="chk-entrada" class="option-checkbox" style="pointer-events:none;">
                   <div>
                     <span class="option-title">Entrada General (Acceso al Predio)</span>
-                    <br><span class="badge-tag tag-alert">Requerida para Cabalgatas / Senderismo</span>
+                    <br><span class="badge-tag tag-warning">🎟️ Requerida solo para visitantes de día a actividades</span>
                   </div>
                 </div>
                 <span class="option-price" id="price-label-entrada">+$3.000 ARS / pers</span>
               </div>
 
               <!-- Alquiler de Quincho -->
-              <div class="service-option-card selected" id="opt-quincho" onclick="toggleOption('quincho', 120000)">
+              <div class="service-option-card selected" id="opt-quincho" onclick="toggleOption('quincho', 5000)">
                 <div class="option-details">
                   <input type="checkbox" id="chk-quincho" class="option-checkbox" checked style="pointer-events:none;">
                   <div>
-                    <span class="option-title">Alquiler de Quincho (Jornada Completa - 150 pers)</span>
-                    <br><span class="badge-tag tag-success">✓ NO requiere pagar Entrada General</span>
+                    <span class="option-title">Alquiler de Quincho Principal (Parrilla & Horno de Barro)</span>
+                    <br><span class="badge-tag tag-success">🎁 ¡Acceso Libre al Predio Incluido! ($0 Entrada)</span>
                   </div>
                 </div>
-                <span class="option-price">+$120.000 ARS</span>
+                <span class="option-price" id="price-label-quincho">+$5.000 ARS / pers</span>
               </div>
 
               <!-- Canchas de Fútbol -->
@@ -1207,7 +1227,7 @@
                   <input type="checkbox" id="chk-soccer" class="option-checkbox" style="pointer-events:none;">
                   <div>
                     <span class="option-title">Alquiler de Cancha de Fútbol (Césped Natural)</span>
-                    <br><span class="badge-tag tag-success">✓ NO requiere pagar Entrada General</span>
+                    <br><span class="badge-tag tag-success">⚽ ¡Acceso Libre al Predio Incluido! ($0 Entrada)</span>
                   </div>
                 </div>
                 <span class="option-price">+$15.000 ARS / hora</span>
@@ -1228,22 +1248,22 @@
                   <input type="checkbox" id="chk-senderismo" class="option-checkbox" checked style="pointer-events:none;">
                   <div>
                     <span class="option-title">Senderismo Guiado por Monte Nativo</span>
-                    <br><span class="badge-tag tag-alert">⚠️ Requiere Entrada General al predio</span>
+                    <br><span class="badge-tag tag-info">🌿 Experiencia Guiada por la Selva Misionera</span>
                   </div>
                 </div>
                 <span class="option-price">+$5.000 ARS / pers</span>
               </div>
 
               <!-- Cabalgatas -->
-              <div class="service-option-card" id="opt-cabalgatas" onclick="toggleOption('cabalgatas', 12000)">
+              <div class="service-option-card" id="opt-cabalgatas" onclick="toggleOption('cabalgatas', 7000)">
                 <div class="option-details">
                   <input type="checkbox" id="chk-cabalgatas" class="option-checkbox" style="pointer-events:none;">
                   <div>
                     <span class="option-title">Paseo de Cabalgatas Guiadas</span>
-                    <br><span class="badge-tag tag-alert">⚠️ Requiere Entrada General al predio</span>
+                    <br><span class="badge-tag tag-info">🏇 Paseo Guiado a Caballo por Paisajes Únicos</span>
                   </div>
                 </div>
-                <span class="option-price">+$12.000 ARS / pers</span>
+                <span class="option-price" id="price-label-cabalgatas">+$7.000 ARS / pers</span>
               </div>
             </div>
           </div>
@@ -1382,9 +1402,10 @@
       entradaIndiv: 4000,
       entradaFamilia: 3000,
       canchaHora: 15000,
-      quinchoJornada: 120000,
+      quinchoBase: 5000,
+      quinchoPromo: 4000,
       senderismoPersona: 5000,
-      cabalgatasPersona: 12000
+      cabalgatasPersona: 7000
     };
 
     // OPCIONES SELECCIONADAS
@@ -1440,11 +1461,22 @@
           label.innerText = `+$${PRICING.entradaIndiv.toLocaleString('es-AR')} ARS / pers`;
         }
       }
+
+      // Regla dinámica del Quincho: $5.000 / pers si <= 20 pers; $4.000 / pers si > 20 pers
+      const quinchoPrecioPersona = guests > 20 ? PRICING.quinchoPromo : PRICING.quinchoBase;
+      const labelQuincho = document.getElementById('price-label-quincho');
+      if (labelQuincho) {
+        if (guests > 20) {
+          labelQuincho.innerText = `+$${PRICING.quinchoPromo.toLocaleString('es-AR')} ARS / pers (Promo >20 pers)`;
+        } else {
+          labelQuincho.innerText = `+$${PRICING.quinchoBase.toLocaleString('es-AR')} ARS / pers`;
+        }
+      }
       
       const hospedajeSubtotal = isHospedaje ? (nights * PRICING.hospedajeNoche) : 0;
       const entradaSubtotal = selectedOptions.entrada ? (guests * entradaPrecioUnitario) : 0;
       const soccerSubtotal = soccerHours * PRICING.canchaHora;
-      const quinchoSubtotal = selectedOptions.quincho ? PRICING.quinchoJornada : 0;
+      const quinchoSubtotal = selectedOptions.quincho ? (guests * quinchoPrecioPersona) : 0;
       const senderismoSubtotal = selectedOptions.senderismo ? (guests * PRICING.senderismoPersona) : 0;
       const cabalgatasSubtotal = selectedOptions.cabalgatas ? (guests * PRICING.cabalgatasPersona) : 0;
       
@@ -1475,11 +1507,12 @@
       const guests = parseInt(document.getElementById('input-guests').value);
       const soccerHours = selectedOptions.soccer ? parseInt(document.getElementById('input-soccer').value) : 0;
       
+      const quinchoPrecioPersona = guests > 20 ? PRICING.quinchoPromo : PRICING.quinchoBase;
       const entradaPrecioUnitario = guests > 4 ? PRICING.entradaFamilia : PRICING.entradaIndiv;
       const hospedajeSubtotal = isHospedaje ? (nights * PRICING.hospedajeNoche) : 0;
       const entradaSubtotal = selectedOptions.entrada ? (guests * entradaPrecioUnitario) : 0;
       const soccerSubtotal = soccerHours * PRICING.canchaHora;
-      const quinchoSubtotal = selectedOptions.quincho ? PRICING.quinchoJornada : 0;
+      const quinchoSubtotal = selectedOptions.quincho ? (guests * quinchoPrecioPersona) : 0;
       const senderismoSubtotal = selectedOptions.senderismo ? (guests * PRICING.senderismoPersona) : 0;
       const cabalgatasSubtotal = selectedOptions.cabalgatas ? (guests * PRICING.cabalgatasPersona) : 0;
       const total = hospedajeSubtotal + soccerSubtotal + quinchoSubtotal + senderismoSubtotal + cabalgatasSubtotal + entradaSubtotal;
@@ -1491,7 +1524,7 @@
       if (selectedOptions.entrada) {
         servicesHtml += `<div class="modal-item-row"><span>Entrada General (${guests} pers)</span><span>$${entradaSubtotal.toLocaleString('es-AR')}</span></div>`;
       }
-      if (selectedOptions.quincho) servicesHtml += `<div class="modal-item-row"><span>Alquiler de Quincho</span><span>$${quinchoSubtotal.toLocaleString('es-AR')}</span></div>`;
+      if (selectedOptions.quincho) servicesHtml += `<div class="modal-item-row"><span>Quincho Principal (${guests} pers @ $${quinchoPrecioPersona.toLocaleString('es-AR')})</span><span>$${quinchoSubtotal.toLocaleString('es-AR')}</span></div>`;
       if (selectedOptions.soccer && soccerHours > 0) servicesHtml += `<div class="modal-item-row"><span>Cancha de Fútbol (${soccerHours} hs)</span><span>$${soccerSubtotal.toLocaleString('es-AR')}</span></div>`;
       if (selectedOptions.senderismo) servicesHtml += `<div class="modal-item-row"><span>Senderismo Guiado</span><span>$${senderismoSubtotal.toLocaleString('es-AR')}</span></div>`;
       if (selectedOptions.cabalgatas) servicesHtml += `<div class="modal-item-row"><span>Cabalgatas Guiadas</span><span>$${cabalgatasSubtotal.toLocaleString('es-AR')}</span></div>`;
@@ -1515,7 +1548,7 @@
           dia2Details += `<strong>15:30hs:</strong> Senderismo guiado por el monte nativo (con Guía).<br>`;
         }
         if (selectedOptions.cabalgatas) {
-          dia2Details += `<strong>17:30hs:</strong> Paseo de Cabalgatas guiadas para recorrer los paisajes misioneros.<br>`;
+          dia2Details += `<strong>17:30hs:</strong> Paseo de Cabalgatas guiadas por los paisajes misioneros.<br>`;
         }
         cronogramaHtml += `
           <div class="modal-day-card">
@@ -1588,11 +1621,12 @@
       const guests = parseInt(document.getElementById('input-guests').value);
       const soccerHours = selectedOptions.soccer ? parseInt(document.getElementById('input-soccer').value) : 0;
       
+      const quinchoPrecioPersona = guests > 20 ? PRICING.quinchoPromo : PRICING.quinchoBase;
       const entradaPrecioUnitario = guests > 4 ? PRICING.entradaFamilia : PRICING.entradaIndiv;
       const hospedajeSubtotal = isHospedaje ? (nights * PRICING.hospedajeNoche) : 0;
       const entradaSubtotal = selectedOptions.entrada ? (guests * entradaPrecioUnitario) : 0;
       const soccerSubtotal = soccerHours * PRICING.canchaHora;
-      const quinchoSubtotal = selectedOptions.quincho ? PRICING.quinchoJornada : 0;
+      const quinchoSubtotal = selectedOptions.quincho ? (guests * quinchoPrecioPersona) : 0;
       const senderismoSubtotal = selectedOptions.senderismo ? (guests * PRICING.senderismoPersona) : 0;
       const cabalgatasSubtotal = selectedOptions.cabalgatas ? (guests * PRICING.cabalgatasPersona) : 0;
       const total = hospedajeSubtotal + entradaSubtotal + soccerSubtotal + quinchoSubtotal + senderismoSubtotal + cabalgatasSubtotal;
@@ -1609,7 +1643,7 @@
                            `💼 *SERVICIOS INCLUIDOS:*\n` +
                            (isHospedaje ? `  - Hospedaje Colonial (${nights} n): $${hospedajeSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
                            (selectedOptions.entrada ? `  - Entrada General (${guests} pers): $${entradaSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
-                           (selectedOptions.quincho ? `  - Alquiler de Quincho: $${quinchoSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
+                           (selectedOptions.quincho ? `  - Alquiler de Quincho (${guests} pers @ $${quinchoPrecioPersona.toLocaleString('es-AR')}): $${quinchoSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
                            (selectedOptions.soccer && soccerHours > 0 ? `  - Canchas de Fútbol (${soccerHours} hs): $${soccerSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
                            (selectedOptions.senderismo ? `  - Senderismo Guiado: $${senderismoSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
                            (selectedOptions.cabalgatas ? `  - Cabalgatas Guiadas: $${cabalgatasSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
