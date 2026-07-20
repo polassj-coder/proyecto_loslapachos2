@@ -16,17 +16,17 @@
       --color-secondary: #3C4F2D; /* Verde Oliva Oscuro */
       --color-primary-light: #3C4F2D;
       --color-dark: #0D120B; /* Negro Neutral */
-      --color-background: #FFFFF7; /* Blanco Warm */
-      --color-soft-bg: #F3F4EE; /* Blanco Soft / Hueso */
-      --color-text-dark: #0D120B;
+      --color-background: #0D120B; /* Negro Neutral */
+      --color-soft-bg: #1B2915; /* Verde Bosque Profundo Suave */
+      --color-text-dark: #FFFFF7;
       --color-text-light: #FFFFF7;
       --color-accent: #C8A24A; /* Dorado Cálido */
       --color-earth: #6D5135; /* Marrón Tierra */
       --font-headings: 'Playfair Display', serif;
       --font-body: 'Inter', sans-serif;
-      --shadow-sm: 0 4px 6px -1px rgba(13, 18, 11, 0.06), 0 2px 4px -1px rgba(13, 18, 11, 0.03);
-      --shadow-md: 0 10px 15px -3px rgba(13, 18, 11, 0.1), 0 4px 6px -2px rgba(13, 18, 11, 0.04);
-      --shadow-lg: 0 20px 25px -5px rgba(13, 18, 11, 0.16), 0 10px 10px -5px rgba(13, 18, 11, 0.06);
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
       --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -43,15 +43,15 @@
     
     body {
       font-family: var(--font-body);
-      color: var(--color-text-dark);
-      background: linear-gradient(180deg, #FFFFF7 0%, #F5F6F0 35%, #EDEFE7 70%, #FFFFF7 100%);
+      color: var(--color-text-light);
+      background-color: #0D120B;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
 
     h1, h2, h3, h4 {
       font-family: var(--font-headings);
-      color: var(--color-dark);
+      color: var(--color-text-light);
       font-weight: 700;
     }
 
@@ -125,15 +125,15 @@
 
     /* HEADER */
     header {
-      background-color: rgba(255, 255, 247, 0.95);
+      background-color: rgba(13, 18, 11, 0.95);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       padding: 1.2rem 2rem;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 4px 20px rgba(13, 18, 11, 0.05);
-      border-bottom: 1px solid rgba(200, 162, 74, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid rgba(200, 162, 74, 0.3);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -154,7 +154,7 @@
     .nav-links a {
       font-size: 0.95rem;
       font-weight: 500;
-      color: var(--color-dark);
+      color: #FFFFF7;
       transition: var(--transition-smooth);
       position: relative;
     }
@@ -175,20 +175,20 @@
     }
 
     .btn-contact {
-      background-color: var(--color-primary);
-      color: var(--color-text-light);
+      background-color: var(--color-accent);
+      color: var(--color-dark);
       padding: 0.6rem 1.4rem;
       border-radius: 50px;
-      font-weight: 600;
+      font-weight: 700;
       transition: var(--transition-smooth);
-      border: 1px solid var(--color-primary);
+      border: 1px solid var(--color-accent);
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(39, 55, 29, 0.25);
+      box-shadow: 0 4px 12px rgba(200, 162, 74, 0.3);
     }
 
     .btn-contact:hover {
-      background-color: var(--color-secondary);
-      border-color: var(--color-secondary);
+      background-color: #FFFFF7;
+      border-color: #FFFFF7;
       transform: translateY(-2px);
     }
 
@@ -277,7 +277,7 @@
       font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: var(--color-earth);
+      color: var(--color-accent);
       font-weight: 800;
       margin-bottom: 1rem;
       display: inline-block;
@@ -289,6 +289,7 @@
       position: relative;
       display: inline-block;
       padding-bottom: 1rem;
+      color: #FFFFF7;
     }
 
     .section-title::after {
@@ -308,9 +309,9 @@
 
     /* EL PROBLEMA (SECCIÓN 2) */
     .problem {
-      background: linear-gradient(135deg, #F1F3EC 0%, #E6E9DE 100%);
-      border-top: 1px solid rgba(60, 79, 45, 0.08);
-      border-bottom: 1px solid rgba(60, 79, 45, 0.08);
+      background: linear-gradient(180deg, #0D120B 0%, #162413 100%);
+      border-top: 1px solid rgba(200, 162, 74, 0.15);
+      border-bottom: 1px solid rgba(200, 162, 74, 0.15);
     }
 
     .problem-cards {
@@ -321,31 +322,31 @@
     }
 
     .problem-card {
-      background: #FFFFF7;
+      background: #1B2B16;
       border-radius: 16px;
       padding: 2.5rem 2rem;
-      border-left: 4px solid var(--color-earth);
-      border-top: 1px solid rgba(200, 162, 74, 0.2);
-      border-right: 1px solid rgba(200, 162, 74, 0.2);
-      border-bottom: 1px solid rgba(200, 162, 74, 0.2);
-      box-shadow: 0 10px 25px rgba(13, 18, 11, 0.05);
+      border-left: 4px solid var(--color-accent);
+      border-top: 1px solid rgba(200, 162, 74, 0.25);
+      border-right: 1px solid rgba(200, 162, 74, 0.25);
+      border-bottom: 1px solid rgba(200, 162, 74, 0.25);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
     .problem-card h3 {
       font-size: 1.3rem;
       margin-bottom: 1rem;
-      color: var(--color-dark);
+      color: var(--color-accent);
     }
 
     .problem-card p {
       font-size: 0.95rem;
-      color: var(--color-text-dark);
-      opacity: 0.85;
+      color: rgba(255, 255, 247, 0.9);
+      opacity: 0.9;
     }
 
     /* LA SOLUCIÓN (SECCIÓN 3) */
     .solution {
-      background: linear-gradient(180deg, #FFFFF7 0%, #F5F6F0 100%);
+      background: linear-gradient(180deg, #162413 0%, #0D120B 100%);
     }
 
     .solution-intro {
@@ -354,7 +355,7 @@
       margin: 0 auto 4rem;
       line-height: 1.8;
       font-style: italic;
-      color: var(--color-text-dark);
+      color: #FFFFF7;
     }
 
     .solution-grid {
@@ -364,17 +365,17 @@
     }
 
     .solution-item {
-      background: #FFFFFF;
+      background: #1B2B16;
       border-radius: 16px;
       padding: 2.5rem 2rem;
-      border: 1.5px solid rgba(60, 79, 45, 0.12);
-      box-shadow: 0 8px 24px rgba(13, 18, 11, 0.04);
+      border: 1.5px solid rgba(60, 79, 45, 0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
     .solution-item h3 {
       font-size: 1.3rem;
       margin-bottom: 1rem;
-      color: var(--color-primary);
+      color: var(--color-accent);
     }
 
     /* METODOLOGÍA / ROADMAP (SECCIÓN 4 - TIMELINE) */
@@ -484,9 +485,9 @@
 
     /* POR QUÉ NOSOTROS (SECCIÓN 5) */
     .why-us {
-      background: linear-gradient(135deg, #F0F2E8 0%, #E8EBE0 100%);
-      border-top: 1px solid rgba(60, 79, 45, 0.08);
-      border-bottom: 1px solid rgba(60, 79, 45, 0.08);
+      background: linear-gradient(135deg, #121E15 0%, #192917 100%);
+      border-top: 1px solid rgba(200, 162, 74, 0.2);
+      border-bottom: 1px solid rgba(200, 162, 74, 0.2);
     }
 
     .why-us-grid {
@@ -531,20 +532,20 @@
 
     /* INVERSIÓN / CALCULADORA (SECCIÓN 6) */
     .investment {
-      background: linear-gradient(180deg, #F4F5EE 0%, #EBF0E5 50%, #F4F5EE 100%);
+      background: linear-gradient(180deg, #0D120B 0%, #162413 100%);
     }
 
     .calc-box {
       max-width: 950px;
       margin: 0 auto;
-      background: #FFFFF7;
+      background: #172614;
       border-radius: 24px;
       padding: 3.5rem;
-      box-shadow: 0 16px 40px rgba(13, 18, 11, 0.09);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: 3rem;
-      border: 1.5px solid rgba(200, 162, 74, 0.25);
+      border: 1.5px solid rgba(200, 162, 74, 0.4);
     }
 
     @media (max-width: 768px) {
@@ -576,12 +577,12 @@
     .input-label {
       font-weight: 600;
       font-size: 1rem;
-      color: var(--color-dark);
+      color: #FFFFF7;
     }
 
     .input-value {
       font-weight: 700;
-      color: var(--color-primary);
+      color: var(--color-accent);
       font-size: 1.1rem;
     }
 
@@ -591,7 +592,7 @@
       width: 100%;
       height: 6px;
       border-radius: 5px;
-      background: rgba(13, 18, 11, 0.12);
+      background: rgba(255, 255, 247, 0.2);
       outline: none;
     }
 
@@ -601,14 +602,14 @@
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: var(--color-primary);
+      background: var(--color-accent);
       cursor: pointer;
       transition: var(--transition-smooth);
     }
 
     .slider::-webkit-slider-thumb:hover {
       transform: scale(1.2);
-      background: var(--color-secondary);
+      background: #FFFFF7;
     }
 
     .services-select {
@@ -618,8 +619,8 @@
     }
 
     .service-option-card {
-      background: #FFFFFF;
-      border: 1.5px solid rgba(60, 79, 45, 0.12);
+      background: #23351C;
+      border: 1.5px solid rgba(60, 79, 45, 0.5);
       border-radius: 12px;
       padding: 1.2rem;
       display: flex;
@@ -627,18 +628,19 @@
       align-items: center;
       cursor: pointer;
       transition: var(--transition-smooth);
-      box-shadow: 0 4px 12px rgba(13, 18, 11, 0.03);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      color: #FFFFF7;
     }
 
     .service-option-card:hover {
       border-color: var(--color-accent);
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(13, 18, 11, 0.07);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     }
 
     .service-option-card.selected {
-      border-color: var(--color-primary);
-      background: linear-gradient(135deg, rgba(39, 55, 29, 0.06), rgba(60, 79, 45, 0.1));
+      border-color: var(--color-accent);
+      background: linear-gradient(135deg, #3C4F2D 0%, #27371D 100%);
     }
 
     .option-details {
@@ -885,17 +887,19 @@
     }
 
     .modal-content {
-      background: var(--color-background);
+      background: #172614;
       border-radius: 24px;
       padding: 3.5rem 2.5rem;
       max-width: 850px;
       width: 95%;
       text-align: center;
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+      border: 1.5px solid rgba(200, 162, 74, 0.4);
       transform: scale(0.9);
       transition: var(--transition-smooth);
       max-height: 90vh;
       overflow-y: auto;
+      color: #FFFFF7;
     }
 
     .modal-grid {
@@ -917,19 +921,19 @@
       font-family: var(--font-body);
       font-size: 1.1rem;
       font-weight: 700;
-      color: var(--color-primary);
+      color: var(--color-accent);
       margin-bottom: 1.2rem;
-      border-bottom: 2px solid rgba(45, 61, 38, 0.1);
+      border-bottom: 2px solid rgba(200, 162, 74, 0.3);
       padding-bottom: 0.5rem;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
 
     .modal-summary-box {
-      background: var(--color-soft-bg);
+      background: #23351C;
       border-radius: 12px;
       padding: 1.8rem;
-      border: 1px solid rgba(18, 30, 21, 0.05);
+      border: 1px solid rgba(200, 162, 74, 0.3);
     }
 
     .modal-item-row {
@@ -937,7 +941,7 @@
       justify-content: space-between;
       margin-bottom: 0.8rem;
       font-size: 0.95rem;
-      color: var(--color-text-dark);
+      color: #FFFFF7;
     }
 
     .modal-total-row {
@@ -945,14 +949,14 @@
       justify-content: space-between;
       font-weight: 700;
       font-size: 1.2rem;
-      color: var(--color-dark);
-      border-top: 2px solid var(--color-primary);
+      color: var(--color-accent);
+      border-top: 2px solid var(--color-accent);
       padding-top: 1rem;
       margin-top: 1rem;
     }
 
     .modal-day-card {
-      background: var(--color-soft-bg);
+      background: #23351C;
       border-radius: 10px;
       padding: 1.2rem;
       margin-bottom: 1rem;
@@ -963,14 +967,14 @@
       font-family: var(--font-body);
       font-weight: 700;
       font-size: 0.95rem;
-      color: var(--color-dark);
+      color: var(--color-accent);
       margin-bottom: 0.4rem;
     }
 
     .modal-day-card p {
       font-size: 0.85rem;
-      color: var(--color-text-dark);
-      opacity: 0.85;
+      color: #FFFFF7;
+      opacity: 0.9;
       line-height: 1.5;
     }
 
@@ -1066,7 +1070,7 @@
     <div class="hero-bg"></div>
     <div class="hero-content animate-fade-in">
       <p class="hero-subtitle">Los Lapachos Centro Recreativo</p>
-      <h1 class="hero-title">Tu Refugio Privado en Misiones: El Descanso que Tu Familia Merece</h1>
+      <h1 class="hero-title">El Descanso Perfecto Existe: Naturaleza, Paz y Privacidad Absoluta para Tu Familia</h1>
       <p class="hero-description">Una experiencia inolvidable para compartir con tu familia y amigos. Días de paz, naturaleza y aire puro en Misiones para renovar energías y crear recuerdos únicos lejos de la rutina.</p>
       <a href="#inversion" class="btn-cta btn-glow">Ver Presupuesto y Estadía</a>
     </div>
@@ -1157,15 +1161,15 @@
         <div class="calc-inputs">
           
           <!-- Evento Principal: Hospedaje Casona (Alquiler de la Casa) -->
-          <div class="input-group" style="background: rgba(45, 61, 38, 0.05); border: 2px solid var(--color-primary); border-radius: 16px; padding: 1.5rem; margin-top: 0.5rem;">
-            <div style="font-weight:700; color:var(--color-primary); font-size:1.15rem; margin-bottom:1rem; display:flex; align-items:center; justify-content:space-between;">
+          <div class="input-group" style="background: rgba(39, 55, 29, 0.35); border: 2px solid var(--color-accent); border-radius: 16px; padding: 1.5rem; margin-top: 0.5rem;">
+            <div style="font-weight:700; color:var(--color-accent); font-size:1.15rem; margin-bottom:1rem; display:flex; align-items:center; justify-content:space-between;">
               <div style="display:flex; align-items:center; gap:8px;">
                 <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
                   <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L8.707 1.5Z"/>
                 </svg>
                 <span>Hospedaje Casona</span>
               </div>
-              <input type="checkbox" id="chk-hospedaje" checked onchange="toggleHospedaje()" style="width:20px; height:20px; cursor:pointer; accent-color:var(--color-primary);">
+              <input type="checkbox" id="chk-hospedaje" checked onchange="toggleHospedaje()" style="width:20px; height:20px; cursor:pointer; accent-color:var(--color-accent);">
             </div>
             
             <div id="hospedaje-controls">
@@ -1174,12 +1178,12 @@
                 <span class="input-value" id="val-nights">2 Noches</span>
               </div>
               <input type="range" id="input-nights" min="1" max="14" value="2" class="slider" oninput="calculateTotal()" style="margin-bottom: 0.8rem;">
-              <span style="font-size:0.82rem; color: var(--color-dark); margin-bottom:1rem; display:block;" id="price-label-hospedaje">
+              <span style="font-size:0.82rem; color: #FFFFF7; margin-bottom:1rem; display:block;" id="price-label-hospedaje">
                 Tarifa: <strong>$22.000 ARS / pers / noche</strong> (hasta 6 pers) | <strong>$18.000 ARS / pers / noche</strong> (mas de 6 pers).<br>
                 <span class="badge-tag tag-success" style="margin-top:5px;">Acceso al predio incluido</span>
               </span>
 
-              <div class="input-label-row" style="margin-top: 1rem; border-top: 1px solid rgba(45, 61, 38, 0.15); padding-top: 1rem;">
+              <div class="input-label-row" style="margin-top: 1rem; border-top: 1px solid rgba(200, 162, 74, 0.3); padding-top: 1rem;">
                 <span class="input-label">Personas Hospedadas en Casona</span>
                 <span class="input-value" id="val-guests">10 Personas</span>
               </div>
@@ -1189,18 +1193,18 @@
 
           <!-- Servicios Adicionales en Formato Card -->
           <div class="input-group" style="margin-top: 1.5rem;">
-            <span class="input-label" style="font-size:1.15rem; font-weight:800; color:var(--color-primary); letter-spacing:-0.2px;">Nuestros Servicios y Actividades</span>
+            <span class="input-label" style="font-size:1.15rem; font-weight:800; color:var(--color-accent); letter-spacing:-0.2px;">Nuestros Servicios y Actividades</span>
             
             <!-- Banner Aclaratorio de Politica de Ingreso -->
-            <div class="info-policy-banner" style="background: rgba(45, 61, 38, 0.05); border: 1px solid rgba(45, 61, 38, 0.15); border-radius: 12px; padding: 1.2rem 1.4rem; margin: 0.8rem 0 1.4rem; color: var(--color-dark);">
-              <strong style="color: var(--color-primary); font-size:1rem; display:block; margin-bottom:8px;">Politica de Acceso y Servicios</strong>
+            <div class="info-policy-banner" style="background: rgba(39, 55, 29, 0.35); border: 1px solid rgba(200, 162, 74, 0.3); border-radius: 12px; padding: 1.2rem 1.4rem; margin: 0.8rem 0 1.4rem; color: #FFFFF7;">
+              <strong style="color: var(--color-accent); font-size:1rem; display:block; margin-bottom:8px;">Politica de Acceso y Servicios</strong>
               <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.86rem; line-height: 1.45;">
-                <div style="background:#ffffff; padding:10px 12px; border-radius:8px; border-left:3px solid var(--color-primary);">
-                  <strong style="color:var(--color-primary); display:block; margin-bottom:2px;">Ingreso al Predio Incluido</strong>
+                <div style="background:#23351C; padding:10px 12px; border-radius:8px; border-left:3px solid var(--color-accent);">
+                  <strong style="color:var(--color-accent); display:block; margin-bottom:2px;">Ingreso al Predio Incluido</strong>
                   <span>Al alquilar el Quincho o la Casona, el acceso al predio ya esta incluido sin costo extra.</span>
                 </div>
-                <div style="background:#ffffff; padding:10px 12px; border-radius:8px; border-left:3px solid var(--color-accent);">
-                  <strong style="color:var(--color-dark); display:block; margin-bottom:2px;">Entrada General y Senderos</strong>
+                <div style="background:#23351C; padding:10px 12px; border-radius:8px; border-left:3px solid var(--color-accent);">
+                  <strong style="color:#FFFFF7; display:block; margin-bottom:2px;">Entrada General y Senderos</strong>
                   <span>La Entrada General abona el acceso al predio e incluye el recorrido libre por los senderos de monte nativo.</span>
                 </div>
               </div>
