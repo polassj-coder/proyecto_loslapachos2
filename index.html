@@ -1378,7 +1378,7 @@
         <div class="calc-results">
           <div>
             <h3 class="results-title">Resumen de Inversión</h3>
-            <div class="results-price" id="total-price">$0</div>
+            <div class="results-price" id="total-price">$0 ARS</div>
             
             <div class="results-details">
               <div class="detail-row" id="row-detail-hospedaje">
@@ -1611,7 +1611,7 @@
       document.getElementById('row-detail-cabalgatas').style.display = selectedOptions.cabalgatas ? 'flex' : 'none';
       document.getElementById('row-detail-merienda').style.display = hasMerienda ? 'flex' : 'none';
       
-      document.getElementById('total-price').innerText = `$${total.toLocaleString('es-AR')}`;
+      document.getElementById('total-price').innerText = `$${total.toLocaleString('es-AR')} ARS`;
     }
 
     function openModal() {
