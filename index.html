@@ -1394,6 +1394,21 @@
     </div>
   </div>
 
+  <!-- VENTANA MODAL PREGUNTA MERIENDA -->
+  <div class="modal" id="merienda-modal" style="z-index: 2000;">
+    <div class="modal-content" style="max-width: 480px; padding: 2.5rem; text-align: center; border-radius: 24px; background: #172614; border: 1.5px solid #C8A24A;">
+      <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">☕</div>
+      <h3 style="color: #C8A24A; font-family: var(--font-body); font-size: 1.35rem; margin-bottom: 0.8rem; font-weight: 700;">¿Deseás agregar Merienda Regional?</h3>
+      <p style="color: #FFFFF7; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.8rem;">
+        Podés sumar a tu reserva una deliciosa <strong>Merienda Regional de Campo</strong> por <strong>+$3.000 ARS por persona</strong> (chipá calentito, infusiones campesinas y delicias artesanales).
+      </p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <button onclick="confirmMeriendaChoice(true)" class="btn-cta" style="padding: 0.8rem 1.4rem; font-size: 0.9rem; cursor: pointer;">Sí, agregar merienda (+$3.000)</button>
+        <button onclick="confirmMeriendaChoice(false)" style="padding: 0.8rem 1.4rem; font-size: 0.9rem; background: rgba(255,255,247,0.12); border: 1px solid rgba(255,255,247,0.3); color: #FFFFF7; border-radius: 50px; cursor: pointer; font-weight: 600;">No, gracias</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // TARIFAS OFICIALES Y ESTIMADAS
     const PRICING = {
