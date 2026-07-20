@@ -1421,6 +1421,19 @@
       calculateTotal();
     }
 
+    function showMeriendaPrompt() {
+      document.getElementById('group-merienda').style.display = 'block';
+      const modal = document.getElementById('merienda-modal');
+      if (modal) modal.classList.add('active');
+    }
+
+    function confirmMeriendaChoice(add) {
+      document.getElementById('chk-merienda').checked = add;
+      const modal = document.getElementById('merienda-modal');
+      if (modal) modal.classList.remove('active');
+      calculateTotal();
+    }
+
     function toggleOption(id, price) {
       selectedOptions[id] = !selectedOptions[id];
       const card = document.getElementById(`opt-${id}`);
@@ -1430,8 +1443,8 @@
         card.classList.add('selected');
         if (chk) chk.checked = true;
         if (id === 'quincho') document.getElementById('group-quincho-controls').style.display = 'block';
-        if (selectedOptions.entrada || selectedOptions.cabalgatas) {
-          document.getElementById('group-merienda').style.display = 'block';
+        if (id === 'entrada' || id === 'cabalgatas') {
+          showMeriendaPrompt();
         }
       } else {
         card.classList.remove('selected');
