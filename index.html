@@ -650,21 +650,21 @@
     }
 
     .option-checkbox {
-      accent-color: var(--color-primary);
+      accent-color: var(--color-accent);
       width: 18px;
       height: 18px;
     }
 
     .option-title {
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--color-dark);
+      font-weight: 700;
+      font-size: 1rem;
+      color: #FFFFF7 !important;
     }
 
     .option-price {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--color-primary);
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--color-accent) !important;
     }
 
     /* CALENDARIO DE DISPONIBILIDAD */
@@ -682,7 +682,7 @@
       align-items: center;
       margin-bottom: 1.2rem;
       font-weight: 700;
-      color: var(--color-dark);
+      color: #FFFFF7;
       font-size: 1.1rem;
     }
     .calendar-grid {
@@ -694,10 +694,10 @@
     .calendar-day-header {
       font-size: 0.75rem;
       font-weight: 700;
-      color: var(--color-primary);
+      color: var(--color-accent);
       text-transform: uppercase;
       padding-bottom: 8px;
-      border-bottom: 1px solid rgba(18, 30, 21, 0.08);
+      border-bottom: 1px solid rgba(200, 162, 74, 0.2);
     }
     .calendar-cell {
       padding: 10px 0;
@@ -706,19 +706,19 @@
       cursor: pointer;
       transition: var(--transition-smooth);
       font-weight: 500;
-      color: var(--color-text-dark);
+      color: #FFFFF7;
     }
     .calendar-cell:hover:not(.booked):not(.selected) {
-      background-color: rgba(45, 61, 38, 0.1);
+      background-color: rgba(200, 162, 74, 0.2);
     }
     .calendar-cell.selected {
-      background-color: var(--color-primary) !important;
-      color: var(--color-text-light) !important;
+      background-color: var(--color-accent) !important;
+      color: var(--color-dark) !important;
       font-weight: 700;
     }
     .calendar-cell.booked {
-      color: rgba(18, 30, 21, 0.3) !important;
-      background-color: rgba(18, 30, 21, 0.05);
+      color: rgba(255, 255, 247, 0.3) !important;
+      background-color: rgba(255, 255, 247, 0.05);
       text-decoration: line-through;
       cursor: not-allowed;
       pointer-events: none;
@@ -733,22 +733,22 @@
       gap: 5px;
       margin-top: 6px;
       letter-spacing: 0.2px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
     .tag-success {
-      background: rgba(39, 55, 29, 0.12);
-      color: #27371D;
-      border: 1px solid rgba(39, 55, 29, 0.25);
+      background: rgba(200, 162, 74, 0.22);
+      color: #C8A24A;
+      border: 1px solid #C8A24A;
     }
     .tag-info {
-      background: rgba(200, 162, 74, 0.16);
-      color: #6D5135;
-      border: 1px solid rgba(200, 162, 74, 0.4);
+      background: rgba(200, 162, 74, 0.3);
+      color: #FFFFF7;
+      border: 1px solid #C8A24A;
     }
     .tag-warning {
-      background: rgba(109, 81, 53, 0.1);
-      color: var(--color-dark);
-      border: 1px solid rgba(109, 81, 53, 0.25);
+      background: rgba(255, 255, 247, 0.15);
+      color: #FFFFF7;
+      border: 1px solid rgba(255, 255, 247, 0.4);
     }
 
     .calc-results {
@@ -1236,13 +1236,13 @@
               </div>
 
               <!-- Controles de Personas en Quincho -->
-              <div class="input-group" id="group-quincho-controls" style="padding:1.2rem; background:var(--color-background); border:1px solid rgba(18,30,21,0.1); border-radius:10px; margin-top:-0.3rem; margin-bottom:0.5rem;">
+              <div class="input-group" id="group-quincho-controls" style="padding:1.2rem; background: rgba(39, 55, 29, 0.5); border:1px solid rgba(200, 162, 74, 0.3); border-radius:10px; margin-top:-0.3rem; margin-bottom:0.5rem; color:#FFFFF7;">
                 <div class="input-label-row">
-                  <span class="input-label" style="font-size:0.9rem;">Personas asistiendo al Quincho</span>
-                  <span class="input-value" id="val-quincho-guests" style="font-size:0.95rem;">20 Personas</span>
+                  <span class="input-label" style="font-size:0.9rem; color:#FFFFF7;">Personas asistiendo al Quincho</span>
+                  <span class="input-value" id="val-quincho-guests" style="font-size:0.95rem; color:var(--color-accent);">20 Personas</span>
                 </div>
                 <input type="range" id="input-quincho-guests" min="1" max="150" value="20" class="slider" oninput="calculateTotal()">
-                <span style="font-size:0.78rem; opacity:0.8; margin-top:4px; display:block;">Tarifa: $5.000 ARS / pers (hasta 20 personas) | $4.000 ARS / pers (mas de 20 personas)</span>
+                <span style="font-size:0.78rem; opacity:0.9; margin-top:4px; display:block; color:#FFFFF7;">Tarifa: $5.000 ARS / pers (hasta 20 personas) | $4.000 ARS / pers (mas de 20 personas)</span>
               </div>
 
               <!-- Canchas de Fútbol 7 -->
@@ -1268,9 +1268,9 @@
               </div>
 
               <!-- Opcion Adicional de Merienda Regional (vinculada a Cabalgatas o libre) -->
-              <div class="input-group" id="group-merienda" style="display:none; padding:0.9rem 1.2rem; background:rgba(224, 169, 109, 0.12); border:1px solid rgba(224, 169, 109, 0.3); border-radius:10px; margin-top:-0.3rem; margin-bottom:0.5rem;">
-                <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-weight:600; font-size:0.88rem; color:var(--color-dark);">
-                  <input type="checkbox" id="chk-merienda" onchange="calculateTotal()" style="width:17px; height:17px; cursor:pointer; accent-color:var(--color-primary);">
+              <div class="input-group" id="group-merienda" style="display:none; padding:0.9rem 1.2rem; background:rgba(200, 162, 74, 0.2); border:1px solid #C8A24A; border-radius:10px; margin-top:-0.3rem; margin-bottom:0.5rem;">
+                <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-weight:600; font-size:0.88rem; color:#FFFFF7;">
+                  <input type="checkbox" id="chk-merienda" onchange="calculateTotal()" style="width:17px; height:17px; cursor:pointer; accent-color:var(--color-accent);">
                   <span>Agregar Merienda Regional de Campo (+ $3.000 ARS / pers)</span>
                 </label>
               </div>
