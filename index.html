@@ -1392,8 +1392,7 @@
     const PRICING = {
       hospedajeBase: 22000,
       hospedajePromo: 18000,
-      entradaIndiv: 4000,
-      entradaFamilia: 3000,
+      entradaGeneral: 3000,
       canchaPersona: 2000,
       quinchoBase: 5000,
       quinchoPromo: 4000,
@@ -1472,22 +1471,12 @@
         }
       }
 
-      // Conteo de personas para actividades o entrada general
+      // Conteo de personas para actividades
       const activeGuests = selectedOptions.quincho ? guestsQuincho : (isHospedaje ? guestsHouse : 10);
-      const entradaPrecioUnitario = activeGuests > 4 ? PRICING.entradaFamilia : PRICING.entradaIndiv;
-      
-      const labelEntrada = document.getElementById('price-label-entrada');
-      if (labelEntrada) {
-        if (activeGuests > 4) {
-          labelEntrada.innerText = `+$${PRICING.entradaFamilia.toLocaleString('es-AR')} ARS / pers (Promo Grupo)`;
-        } else {
-          labelEntrada.innerText = `+$${PRICING.entradaIndiv.toLocaleString('es-AR')} ARS / pers`;
-        }
-      }
 
       // Subtotales
       const hospedajeSubtotal = isHospedaje ? (nights * guestsHouse * hospedajePrecioPersona) : 0;
-      const entradaSubtotal = selectedOptions.entrada ? (activeGuests * entradaPrecioUnitario) : 0;
+      const entradaSubtotal = selectedOptions.entrada ? (activeGuests * PRICING.entradaGeneral) : 0;
       const soccerSubtotal = selectedOptions.soccer ? (activeGuests * PRICING.canchaPersona) : 0;
       const quinchoSubtotal = selectedOptions.quincho ? (guestsQuincho * quinchoPrecioPersona) : 0;
       const cabalgatasSubtotal = selectedOptions.cabalgatas ? (activeGuests * PRICING.cabalgatasPersona) : 0;
@@ -1524,10 +1513,9 @@
       const activeGuests = selectedOptions.quincho ? guestsQuincho : (isHospedaje ? guestsHouse : 10);
       const hospedajePrecioPersona = guestsHouse > 6 ? PRICING.hospedajePromo : PRICING.hospedajeBase;
       const quinchoPrecioPersona = guestsQuincho > 20 ? PRICING.quinchoPromo : PRICING.quinchoBase;
-      const entradaPrecioUnitario = activeGuests > 4 ? PRICING.entradaFamilia : PRICING.entradaIndiv;
       
       const hospedajeSubtotal = isHospedaje ? (nights * guestsHouse * hospedajePrecioPersona) : 0;
-      const entradaSubtotal = selectedOptions.entrada ? (activeGuests * entradaPrecioUnitario) : 0;
+      const entradaSubtotal = selectedOptions.entrada ? (activeGuests * PRICING.entradaGeneral) : 0;
       const soccerSubtotal = selectedOptions.soccer ? (activeGuests * PRICING.canchaPersona) : 0;
       const quinchoSubtotal = selectedOptions.quincho ? (guestsQuincho * quinchoPrecioPersona) : 0;
       const cabalgatasSubtotal = selectedOptions.cabalgatas ? (activeGuests * PRICING.cabalgatasPersona) : 0;
@@ -1540,7 +1528,7 @@
         servicesHtml += `<div class="modal-item-row"><span>Hospedaje Colonial (${nights} n - ${guestsHouse} pers @ $${hospedajePrecioPersona.toLocaleString('es-AR')})</span><span>$${hospedajeSubtotal.toLocaleString('es-AR')}</span></div>`;
       }
       if (selectedOptions.entrada) {
-        servicesHtml += `<div class="modal-item-row"><span>Entrada General (${activeGuests} pers)</span><span>$${entradaSubtotal.toLocaleString('es-AR')}</span></div>`;
+        servicesHtml += `<div class="modal-item-row"><span>Entrada General (${activeGuests} pers @ $3.000)</span><span>$${entradaSubtotal.toLocaleString('es-AR')}</span></div>`;
       }
       if (selectedOptions.quincho) {
         servicesHtml += `<div class="modal-item-row"><span>Quincho Principal (${guestsQuincho} pers @ $${quinchoPrecioPersona.toLocaleString('es-AR')})</span><span>$${quinchoSubtotal.toLocaleString('es-AR')}</span></div>`;
@@ -1643,10 +1631,9 @@
       const activeGuests = selectedOptions.quincho ? guestsQuincho : (isHospedaje ? guestsHouse : 10);
       const hospedajePrecioPersona = guestsHouse > 6 ? PRICING.hospedajePromo : PRICING.hospedajeBase;
       const quinchoPrecioPersona = guestsQuincho > 20 ? PRICING.quinchoPromo : PRICING.quinchoBase;
-      const entradaPrecioUnitario = activeGuests > 4 ? PRICING.entradaFamilia : PRICING.entradaIndiv;
       
       const hospedajeSubtotal = isHospedaje ? (nights * guestsHouse * hospedajePrecioPersona) : 0;
-      const entradaSubtotal = selectedOptions.entrada ? (activeGuests * entradaPrecioUnitario) : 0;
+      const entradaSubtotal = selectedOptions.entrada ? (activeGuests * PRICING.entradaGeneral) : 0;
       const soccerSubtotal = selectedOptions.soccer ? (activeGuests * PRICING.canchaPersona) : 0;
       const quinchoSubtotal = selectedOptions.quincho ? (guestsQuincho * quinchoPrecioPersona) : 0;
       const cabalgatasSubtotal = selectedOptions.cabalgatas ? (activeGuests * PRICING.cabalgatasPersona) : 0;
@@ -1664,7 +1651,7 @@
                            `• Tipo de Estadia: ${isHospedaje ? nights + ' noches en Casona Colonial (' + guestsHouse + ' pers @ $' + hospedajePrecioPersona.toLocaleString('es-AR') + '/noche)' : 'Visita de Campo (Dia unico)'}\n\n` +
                            `SERVICIOS INCLUIDOS:\n` +
                            (isHospedaje ? `  - Hospedaje Colonial (${nights} n - ${guestsHouse} pers): $${hospedajeSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
-                           (selectedOptions.entrada ? `  - Entrada General (${activeGuests} pers): $${entradaSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
+                           (selectedOptions.entrada ? `  - Entrada General (${activeGuests} pers @ $3.000): $${entradaSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
                            (selectedOptions.quincho ? `  - Alquiler de Quincho (${guestsQuincho} pers @ $${quinchoPrecioPersona.toLocaleString('es-AR')}): $${quinchoSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
                            (selectedOptions.soccer ? `  - Canchas de Futbol 7 (${activeGuests} pers): $${soccerSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
                            (selectedOptions.cabalgatas ? `  - Cabalgatas Guiadas (${activeGuests} pers): $${cabalgatasSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
