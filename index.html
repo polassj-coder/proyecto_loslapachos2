@@ -706,9 +706,21 @@
       cursor: not-allowed;
       pointer-events: none;
     }
-    .calendar-cell.empty {
-      cursor: default;
-      pointer-events: none;
+    .badge-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+    .tag-success {
+      background: rgba(45, 61, 38, 0.15);
+      color: var(--color-primary);
+    }
+    .tag-alert {
+      background: rgba(217, 83, 79, 0.15);
+      color: #C9302C;
     }
 
     .calc-results {
@@ -1119,31 +1131,9 @@
       <!-- CALCULADORA INTERACTIVA DE INVERSIÓN (SKILL: PRODUCT-CATALOG) -->
       <div class="calc-box glass-container-light">
         <div class="calc-inputs">
-          <!-- Calendario de Disponibilidad -->
-          <div class="input-group" id="group-calendar">
-            <span class="input-label">1. Seleccioná tus Fechas en el Calendario</span>
-            <div class="calendar-widget">
-              <div class="calendar-header">
-                <span>Julio 2026</span>
-              </div>
-              <div class="calendar-grid">
-                <span class="calendar-day-header">Do</span>
-                <span class="calendar-day-header">Lu</span>
-                <span class="calendar-day-header">Ma</span>
-                <span class="calendar-day-header">Mi</span>
-                <span class="calendar-day-header">Ju</span>
-                <span class="calendar-day-header">Vi</span>
-                <span class="calendar-day-header">Sa</span>
-              </div>
-              <div class="calendar-grid" id="calendar-grid" style="margin-top: 5px;">
-                <!-- Se poblará por JS -->
-              </div>
-            </div>
-            <input type="hidden" id="selected-date" value="">
-            <span id="calendar-warning" style="font-size: 0.8rem; color: #D9534F; display: none; font-weight: 600; margin-bottom: 0.5rem;">⚠️ Por favor selecciona una fecha de inicio disponible en el calendario.</span>
-          </div>
+          
           <!-- Evento Principal: Hospedaje Colonial (Alquiler de la Casa) -->
-          <div class="input-group" style="background: rgba(45, 61, 38, 0.05); border: 2px solid var(--color-primary); border-radius: 16px; padding: 1.5rem; margin-top: 1rem;">
+          <div class="input-group" style="background: rgba(45, 61, 38, 0.05); border: 2px solid var(--color-primary); border-radius: 16px; padding: 1.5rem; margin-top: 0.5rem;">
             <div style="font-weight:700; color:var(--color-primary); font-size:1.15rem; margin-bottom:1rem; display:flex; align-items:center; justify-content:space-between;">
               <div style="display:flex; align-items:center; gap:8px;">
                 <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
@@ -1156,10 +1146,14 @@
             
             <div id="hospedaje-controls">
               <div class="input-label-row">
-                <span class="input-label">Noches Calculadas en Calendario</span>
+                <span class="input-label">Cantidad de Noches</span>
                 <span class="input-value" id="val-nights">2 Noches</span>
               </div>
-              <span style="font-size:0.8rem; opacity:0.75; color: var(--color-dark); margin-bottom:1rem; display:block;">Tarifa: $95.000 ARS / noche (Casona completa para hasta 10 personas).</span>
+              <input type="range" id="input-nights" min="1" max="14" value="2" class="slider" oninput="calculateTotal()" style="margin-bottom: 0.8rem;">
+              <span style="font-size:0.82rem; color: var(--color-dark); margin-bottom:1rem; display:block;">
+                Tarifa: <strong>$95.000 ARS / noche</strong> (Casona completa para hasta 10 personas).<br>
+                <span class="badge-tag tag-success" style="margin-top:5px;">✓ NO requiere abonar Entrada General</span>
+              </span>
             </div>
 
             <div class="input-label-row" style="margin-top: 1rem; border-top: 1px solid rgba(45, 61, 38, 0.15); padding-top: 1rem;">
@@ -1170,14 +1164,27 @@
           </div>
 
           <!-- Servicios Adicionales en Formato Card -->
-          <div class="input-group" style="margin-top: 1rem;">
-            <span class="input-label">Servicios y Actividades Adicionales</span>
+          <div class="input-group" style="margin-top: 1.5rem;">
+            <span class="input-label" style="font-size:1.1rem; font-weight:700;">Servicios y Actividades Adicionales</span>
+            
+            <!-- Banner Aclaratorio de Políticas de Entrada -->
+            <div class="info-policy-banner" style="background: rgba(224, 169, 109, 0.15); border-left: 4px solid var(--color-accent); border-radius: 10px; padding: 1rem 1.2rem; margin: 0.8rem 0 1.2rem; font-size: 0.88rem; color: var(--color-dark);">
+              <strong style="color: var(--color-dark); display: block; margin-bottom: 4px; font-size:0.95rem;">💡 Política de Ingreso y Entrada General:</strong>
+              <ul style="margin-left: 1.2rem; margin-top: 4px; line-height: 1.5; opacity: 0.95;">
+                <li><strong>NO pagan Entrada General:</strong> Quienes alquilen el <strong>Quincho</strong>, la <strong>Casona Colonial</strong> o las <strong>Canchas de Fútbol</strong>.</li>
+                <li><strong>SÍ requieren Entrada General:</strong> Quienes asistan únicamente a realizar <strong>Cabalgatas</strong> o <strong>Senderismo</strong>.</li>
+              </ul>
+            </div>
+
             <div class="services-select">
               <!-- Entrada General -->
-              <div class="service-option-card selected" id="opt-entrada" onclick="toggleOption('entrada', 4000)">
+              <div class="service-option-card" id="opt-entrada" onclick="toggleOption('entrada', 4000)">
                 <div class="option-details">
-                  <input type="checkbox" id="chk-entrada" class="option-checkbox" checked style="pointer-events:none;">
-                  <span class="option-title">Entrada General (Acceso al Predio)</span>
+                  <input type="checkbox" id="chk-entrada" class="option-checkbox" style="pointer-events:none;">
+                  <div>
+                    <span class="option-title">Entrada General (Acceso al Predio)</span>
+                    <br><span class="badge-tag tag-alert">Requerida para Cabalgatas / Senderismo</span>
+                  </div>
                 </div>
                 <span class="option-price" id="price-label-entrada">+$3.000 ARS / pers</span>
               </div>
@@ -1186,7 +1193,10 @@
               <div class="service-option-card selected" id="opt-quincho" onclick="toggleOption('quincho', 120000)">
                 <div class="option-details">
                   <input type="checkbox" id="chk-quincho" class="option-checkbox" checked style="pointer-events:none;">
-                  <span class="option-title">Alquiler de Quincho (Jornada Completa para 150 pers)</span>
+                  <div>
+                    <span class="option-title">Alquiler de Quincho (Jornada Completa - 150 pers)</span>
+                    <br><span class="badge-tag tag-success">✓ NO requiere pagar Entrada General</span>
+                  </div>
                 </div>
                 <span class="option-price">+$120.000 ARS</span>
               </div>
@@ -1195,7 +1205,10 @@
               <div class="service-option-card" id="opt-soccer" onclick="toggleOption('soccer', 15000)">
                 <div class="option-details">
                   <input type="checkbox" id="chk-soccer" class="option-checkbox" style="pointer-events:none;">
-                  <span class="option-title">Alquiler de Cancha de Fútbol (Césped Natural)</span>
+                  <div>
+                    <span class="option-title">Alquiler de Cancha de Fútbol (Césped Natural)</span>
+                    <br><span class="badge-tag tag-success">✓ NO requiere pagar Entrada General</span>
+                  </div>
                 </div>
                 <span class="option-price">+$15.000 ARS / hora</span>
               </div>
@@ -1213,7 +1226,10 @@
               <div class="service-option-card selected" id="opt-senderismo" onclick="toggleOption('senderismo', 5000)">
                 <div class="option-details">
                   <input type="checkbox" id="chk-senderismo" class="option-checkbox" checked style="pointer-events:none;">
-                  <span class="option-title">Senderismo Guiado por Monte Nativo</span>
+                  <div>
+                    <span class="option-title">Senderismo Guiado por Monte Nativo</span>
+                    <br><span class="badge-tag tag-alert">⚠️ Requiere Entrada General al predio</span>
+                  </div>
                 </div>
                 <span class="option-price">+$5.000 ARS / pers</span>
               </div>
@@ -1222,7 +1238,10 @@
               <div class="service-option-card" id="opt-cabalgatas" onclick="toggleOption('cabalgatas', 12000)">
                 <div class="option-details">
                   <input type="checkbox" id="chk-cabalgatas" class="option-checkbox" style="pointer-events:none;">
-                  <span class="option-title">Paseo de Cabalgatas Guiadas</span>
+                  <div>
+                    <span class="option-title">Paseo de Cabalgatas Guiadas</span>
+                    <br><span class="badge-tag tag-alert">⚠️ Requiere Entrada General al predio</span>
+                  </div>
                 </div>
                 <span class="option-price">+$12.000 ARS / pers</span>
               </div>
@@ -1370,33 +1389,16 @@
 
     // OPCIONES SELECCIONADAS
     let selectedOptions = {
-      entrada: true,
+      entrada: false,
       quincho: true,
       soccer: false,
       senderismo: true,
       cabalgatas: false
     };
 
-    // ESTADO DEL CALENDARIO E INTEGRACIÓN
-    let bookedDays = [14, 22];
-    let selectedStartDay = 15; 
-    let selectedEndDay = 17;
-    let hoveredDay = null;
-
     function toggleHospedaje() {
       const isChecked = document.getElementById('chk-hospedaje').checked;
       document.getElementById('hospedaje-controls').style.display = isChecked ? 'block' : 'none';
-      document.getElementById('group-calendar').style.display = isChecked ? 'block' : 'none';
-      
-      if (!isChecked) {
-        document.getElementById('selected-date').value = "Fecha a coordinar con la administración";
-      } else {
-        if (selectedStartDay) {
-          selectedEndDay = selectedStartDay + 2;
-          if (selectedEndDay > 31) selectedEndDay = 31;
-          document.getElementById('selected-date').value = `Del ${selectedStartDay} al ${selectedEndDay} de Julio de 2026`;
-        }
-      }
       calculateTotal();
     }
 
@@ -1420,13 +1422,10 @@
     function calculateTotal() {
       const isHospedaje = document.getElementById('chk-hospedaje').checked;
       const guests = parseInt(document.getElementById('input-guests').value);
+      const nightsInput = document.getElementById('input-nights');
+      const nights = isHospedaje ? parseInt(nightsInput ? nightsInput.value : 2) : 0;
       const soccerHours = selectedOptions.soccer ? parseInt(document.getElementById('input-soccer').value) : 0;
 
-      let nights = 0;
-      if (selectedStartDay && selectedEndDay) {
-        nights = selectedEndDay - selectedStartDay;
-      }
-      
       document.getElementById('val-nights').innerText = nights === 1 ? '1 Noche' : `${nights} Noches`;
       document.getElementById('val-guests').innerText = `${guests} Personas`;
       document.getElementById('val-soccer').innerText = soccerHours === 1 ? '1 Hora' : `${soccerHours} Horas`;
@@ -1466,122 +1465,13 @@
       document.getElementById('row-detail-cabalgatas').style.display = selectedOptions.cabalgatas ? 'flex' : 'none';
       
       document.getElementById('total-price').innerText = `$${total.toLocaleString('es-AR')}`;
-      renderCalendar();
-    }
-
-    function renderCalendar() {
-      const grid = document.getElementById('calendar-grid');
-      grid.innerHTML = '';
-      const isHospedaje = document.getElementById('chk-hospedaje').checked;
-
-      for (let i = 0; i < 3; i++) {
-        const cell = document.createElement('span');
-        cell.className = 'calendar-cell empty';
-        grid.appendChild(cell);
-      }
-      for (let day = 1; day <= 31; day++) {
-        const cell = document.createElement('span');
-        cell.className = 'calendar-cell';
-        cell.innerText = day;
-        if (bookedDays.includes(day)) {
-          cell.classList.add('booked');
-        } else {
-          if (selectedStartDay === day) {
-            cell.classList.add('selected-start');
-            if (!isHospedaje || selectedStartDay === selectedEndDay) cell.style.borderRadius = "8px";
-          } else if (isHospedaje && selectedEndDay === day) {
-            cell.classList.add('selected-end');
-          } else if (isHospedaje && selectedStartDay && selectedEndDay && day > selectedStartDay && day < selectedEndDay) {
-            cell.classList.add('selected-range');
-          } else if (isHospedaje && selectedStartDay && !selectedEndDay && hoveredDay && day > selectedStartDay && day <= hoveredDay) {
-            cell.classList.add('range-preview');
-          }
-          cell.onclick = () => selectDay(day);
-          cell.onmouseenter = () => {
-            if (isHospedaje && selectedStartDay && !selectedEndDay && day > selectedStartDay) {
-              hoveredDay = day;
-              updateCalendarVisuals();
-            }
-          };
-        }
-        grid.appendChild(cell);
-      }
-    }
-
-    function updateCalendarVisuals() {
-      const isHospedaje = document.getElementById('chk-hospedaje').checked;
-      const cells = document.querySelectorAll('.calendar-cell:not(.empty):not(.booked)');
-      cells.forEach(cell => {
-        const day = parseInt(cell.innerText);
-        cell.className = 'calendar-cell';
-        if (selectedStartDay === day) {
-          cell.classList.add('selected-start');
-          if (!isHospedaje || selectedStartDay === selectedEndDay) cell.style.borderRadius = "8px";
-        } else if (isHospedaje && selectedEndDay === day) {
-          cell.classList.add('selected-end');
-        } else if (isHospedaje && selectedStartDay && selectedEndDay && day > selectedStartDay && day < selectedEndDay) {
-          cell.classList.add('selected-range');
-        } else if (isHospedaje && selectedStartDay && !selectedEndDay && hoveredDay && day > selectedStartDay && day <= hoveredDay) {
-          cell.classList.add('range-preview');
-        }
-      });
-    }
-
-    function selectDay(day) {
-      const isHospedaje = document.getElementById('chk-hospedaje').checked;
-      if (!isHospedaje) {
-        selectedStartDay = day;
-        selectedEndDay = day;
-        document.getElementById('selected-date').value = `${day} de Julio de 2026 (Día completo)`;
-      } else {
-        if (selectedStartDay && selectedEndDay && selectedStartDay !== selectedEndDay) {
-          selectedStartDay = day;
-          selectedEndDay = null;
-          document.getElementById('selected-date').value = `${day} de Julio de 2026`;
-        } else if (!selectedStartDay || selectedStartDay === selectedEndDay) {
-          selectedStartDay = day;
-          selectedEndDay = null;
-          document.getElementById('selected-date').value = `${day} de Julio de 2026`;
-        } else {
-          if (day < selectedStartDay) {
-            selectedStartDay = day;
-            document.getElementById('selected-date').value = `${day} de Julio de 2026`;
-          } else if (day === selectedStartDay) {
-            selectedEndDay = day;
-            document.getElementById('selected-date').value = `${day} de Julio de 2026 (Día completo)`;
-          } else {
-            let containsBooked = false;
-            for (let d = selectedStartDay; d <= day; d++) {
-              if (bookedDays.includes(d)) {
-                containsBooked = true;
-                break;
-              }
-            }
-            if (containsBooked) {
-              alert("⚠️ El rango seleccionado incluye días ya ocupados. Por favor elegí otro rango.");
-              return;
-            }
-            selectedEndDay = day;
-            document.getElementById('selected-date').value = `Del ${selectedStartDay} al ${selectedEndDay} de Julio de 2026`;
-          }
-        }
-      }
-      document.getElementById('calendar-warning').style.display = 'none';
-      calculateTotal();
     }
 
     function openModal() {
-      const isHospedaje = document.getElementById('chk-hospedaje').checked;
-      
-      if (isHospedaje && (!selectedStartDay || !selectedEndDay || selectedStartDay === selectedEndDay)) {
-        document.getElementById('calendar-warning').innerText = "⚠️ Por favor seleccioná un rango de fechas en el calendario (check-in y check-out).";
-        document.getElementById('calendar-warning').style.display = 'block';
-        document.getElementById('calendar-warning').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return;
-      }
-
       const modal = document.getElementById('info-modal');
-      const nights = isHospedaje ? selectedEndDay - selectedStartDay : 0;
+      const isHospedaje = document.getElementById('chk-hospedaje').checked;
+      const nightsInput = document.getElementById('input-nights');
+      const nights = isHospedaje ? parseInt(nightsInput ? nightsInput.value : 2) : 0;
       const guests = parseInt(document.getElementById('input-guests').value);
       const soccerHours = selectedOptions.soccer ? parseInt(document.getElementById('input-soccer').value) : 0;
       
@@ -1594,7 +1484,7 @@
       const cabalgatasSubtotal = selectedOptions.cabalgatas ? (guests * PRICING.cabalgatasPersona) : 0;
       const total = hospedajeSubtotal + soccerSubtotal + quinchoSubtotal + senderismoSubtotal + cabalgatasSubtotal + entradaSubtotal;
       
-      let servicesHtml = `<div class="modal-item-row" style="font-weight:700; border-bottom:1px dashed #ccc; padding-bottom:5px; margin-bottom: 0.8rem;"><span>Estadía:</span><span>${document.getElementById('selected-date').value}</span></div>`;
+      let servicesHtml = `<div class="modal-item-row" style="font-weight:700; border-bottom:1px dashed #ccc; padding-bottom:5px; margin-bottom: 0.8rem;"><span>Tipo de Retiro:</span><span>${isHospedaje ? nights + ' Noches en Casona' : 'Jornada de Campo'}</span></div>`;
       if (isHospedaje) {
         servicesHtml += `<div class="modal-item-row"><span>Hospedaje Colonial (${nights} noches)</span><span>$${hospedajeSubtotal.toLocaleString('es-AR')}</span></div>`;
       }
@@ -1622,10 +1512,10 @@
           dia2Details += `<strong>10:00hs:</strong> Torneo recreativo de fútbol (${soccerHours} hs).<br>`;
         }
         if (selectedOptions.senderismo) {
-          dia2Details += `<strong>15:30hs:</strong> Senderismo guiado por el monte nativo.<br>`;
+          dia2Details += `<strong>15:30hs:</strong> Senderismo guiado por el monte nativo (con Guía).<br>`;
         }
         if (selectedOptions.cabalgatas) {
-          dia2Details += `<strong>17:30hs:</strong> Paseo de Cabalgatas guiadas para recorrer los paisajes misioneros a caballo.<br>`;
+          dia2Details += `<strong>17:30hs:</strong> Paseo de Cabalgatas guiadas para recorrer los paisajes misioneros.<br>`;
         }
         cronogramaHtml += `
           <div class="modal-day-card">
@@ -1646,7 +1536,7 @@
           </div>
         `;
       } else {
-        let dayDetails = '<strong>09:00hs:</strong> Recepción y desayuno de bienvenida.<br>';
+        let dayDetails = '<strong>09:00hs:</strong> Recepción y bienvenida.<br>';
         if (selectedOptions.soccer && soccerHours > 0) {
           dayDetails += `<strong>10:00hs:</strong> Torneo recreativo de fútbol (${soccerHours} hs).<br>`;
         }
@@ -1693,7 +1583,8 @@
       btn.innerHTML = `<span class="calc-loading-spinner" style="display:inline-block; width:14px; height:14px; border:2px solid white; border-radius:50%; border-top-color:transparent; animation:spin 0.8s linear infinite; margin-right:8px; vertical-align:middle;"></span> Enviando cotización...`;
 
       const isHospedaje = document.getElementById('chk-hospedaje').checked;
-      const nights = selectedEndDay - selectedStartDay;
+      const nightsInput = document.getElementById('input-nights');
+      const nights = isHospedaje ? parseInt(nightsInput ? nightsInput.value : 2) : 0;
       const guests = parseInt(document.getElementById('input-guests').value);
       const soccerHours = selectedOptions.soccer ? parseInt(document.getElementById('input-soccer').value) : 0;
       
@@ -1705,7 +1596,6 @@
       const senderismoSubtotal = selectedOptions.senderismo ? (guests * PRICING.senderismoPersona) : 0;
       const cabalgatasSubtotal = selectedOptions.cabalgatas ? (guests * PRICING.cabalgatasPersona) : 0;
       const total = hospedajeSubtotal + entradaSubtotal + soccerSubtotal + quinchoSubtotal + senderismoSubtotal + cabalgatasSubtotal;
-      const dateText = document.getElementById('selected-date').value;
 
       const messageText = `¡Hola Los Lapachos! 👋 Quisiera solicitar una reserva formal con el siguiente detalle de cotización:\n\n` +
                            `📌 *DATOS DE CONTACTO:*\n` +
@@ -1715,7 +1605,6 @@
                            `📌 *DETALLES DEL RETIRO:*\n` +
                            `• *Cliente:* TechMinds Solutions\n` +
                            `• *Cantidad de Personas:* ${guests} personas\n` +
-                           `• *Fecha:* ${dateText}\n` +
                            `• *Tipo de Estadía:* ${isHospedaje ? nights + ' noches (Hospedaje Casona Colonial)' : 'Visita de Campo (Día único)'}\n\n` +
                            `💼 *SERVICIOS INCLUIDOS:*\n` +
                            (isHospedaje ? `  - Hospedaje Colonial (${nights} n): $${hospedajeSubtotal.toLocaleString('es-AR')} ARS\n` : '') +
@@ -1729,33 +1618,17 @@
 
       const whatsappUrl = `https://api.whatsapp.com/send?phone=543755680063&text=${encodeURIComponent(messageText)}`;
       
-      // Simular envío de correo electrónico a Gmail (Asíncrono 1.5s)
       setTimeout(() => {
-        // Mostrar Toast de Confirmación
         const toast = document.getElementById('email-toast');
         document.getElementById('toast-email-text').innerText = `Se envió una copia de la reserva a ${email}.`;
         toast.style.right = '20px';
         
-        // Bloquear días en el calendario local
-        if (selectedStartDay && selectedEndDay) {
-          for (let d = selectedStartDay; d <= selectedEndDay; d++) {
-            bookedDays.push(d);
-          }
-          selectedStartDay = null;
-          selectedEndDay = null;
-          document.getElementById('selected-date').value = "";
-          renderCalendar();
-        }
-        
-        // Cerrar modal y abrir WhatsApp
         closeModal();
         window.open(whatsappUrl, '_blank');
         
-        // Resetear botón de carga
         btn.disabled = false;
         btn.innerHTML = originalText;
         
-        // Ocultar Toast tras 4 segundos
         setTimeout(() => {
           toast.style.right = '-350px';
         }, 4000);
@@ -1767,8 +1640,6 @@
     }
 
     // Inicializar por defecto
-    document.getElementById('selected-date').value = `Del ${selectedStartDay} al ${selectedEndDay} de Julio de 2026`;
-    renderCalendar();
     calculateTotal();
   </script>
 
